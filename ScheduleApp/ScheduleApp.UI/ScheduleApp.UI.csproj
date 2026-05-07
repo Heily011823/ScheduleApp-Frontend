@@ -9,6 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\ImagenFondo.jpeg" />
+    <None Remove="Assets\Logo.jpeg" />
+    <None Remove="Assets\PanelIzquierdoLogin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\ImagenFondo.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Logo.jpeg" />
+    <Resource Include="Assets\PanelIzquierdoLogin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
 
