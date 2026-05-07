@@ -15,4 +15,10 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Assets\ImagenFondo.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
