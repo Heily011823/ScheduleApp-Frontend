@@ -1,8 +1,5 @@
 ﻿using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace ScheduleApp.UI.ViewModels
@@ -10,6 +7,10 @@ namespace ScheduleApp.UI.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private object _currentView;
+        private string _rolUsuario;
+        private bool _esAdministrador;
+        private string _moduloActivo;
+        private string _imagenRol;
 
         public object CurrentView
         {
@@ -21,24 +22,76 @@ namespace ScheduleApp.UI.ViewModels
             }
         }
 
+        public string RolUsuario
+        {
+            get => _rolUsuario;
+            set
+            {
+                _rolUsuario = value;
+                OnPropertyChanged();
+
+                EsAdministrador = _rolUsuario == "Administrador";
+
+                ImagenRol = EsAdministrador
+                    ? "/Assets/Administrador.png"
+                    : "/Assets/Coordinador.png";
+            }
+        }
+
+        public bool EsAdministrador
+        {
+            get => _esAdministrador;
+            set
+            {
+                _esAdministrador = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ModuloActivo
+        {
+            get => _moduloActivo;
+            set
+            {
+                _moduloActivo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ImagenRol
+        {
+            get => _imagenRol;
+            set
+            {
+                _imagenRol = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand ShowDashboardCommand { get; set; }
         public ICommand ShowMateriasCommand { get; set; }
 
         public MainViewModel()
         {
+            RolUsuario = "Administrador";
+            // RolUsuario = "Coordinador";
+
             ShowDashboardCommand =
                 new RelayCommand(o =>
                 {
                     CurrentView = new DashboardView();
+                    ModuloActivo = "Inicio";
                 });
 
             ShowMateriasCommand =
                 new RelayCommand(o =>
                 {
                     CurrentView = new MateriasView();
+                    ModuloActivo = "Materias";
                 });
 
             CurrentView = new DashboardView();
+            ModuloActivo = "Inicio";
         }
     }
 }

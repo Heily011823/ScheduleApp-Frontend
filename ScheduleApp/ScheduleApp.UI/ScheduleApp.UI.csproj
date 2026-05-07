@@ -9,7 +9,75 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Administrador.png" />
+    <None Remove="Assets\Aulas.png" />
+    <None Remove="Assets\CerrarSesion.png" />
+    <None Remove="Assets\Coordinador.png" />
+    <None Remove="Assets\Docentes.png" />
+    <None Remove="Assets\Horarios.png" />
+    <None Remove="Assets\ImagenFondo.jpeg" />
+    <None Remove="Assets\Informacion.png" />
+    <None Remove="Assets\Inicio.png" />
+    <None Remove="Assets\Logo.jpeg" />
+    <None Remove="Assets\ManualUsuario.png" />
+    <None Remove="Assets\Materias.png" />
+    <None Remove="Assets\Programas.png" />
+    <None Remove="Assets\Restricciones.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Administrador.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Aulas.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\CerrarSesion.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Coordinador.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Docentes.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Horarios.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\ImagenFondo.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Informacion.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Inicio.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logo.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\ManualUsuario.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Materias.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Programas.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Restricciones.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Usuarios.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
