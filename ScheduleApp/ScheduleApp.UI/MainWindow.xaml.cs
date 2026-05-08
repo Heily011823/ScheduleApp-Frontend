@@ -21,6 +21,7 @@ namespace ScheduleApp.UI
         {
             InitializeComponent();
             DataContext = new MainViewModel("Administrador");
+            DataContext = new MainViewModel("Coordinador");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
