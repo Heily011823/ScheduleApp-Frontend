@@ -1,5 +1,6 @@
 ﻿using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ScheduleApp.UI.ViewModels
@@ -71,6 +72,12 @@ namespace ScheduleApp.UI.ViewModels
         public ICommand ShowDashboardCommand { get; set; }
         public ICommand ShowMateriasCommand { get; set; }
 
+        public ICommand ShowLogoutCommand { get; set; }
+
+        public ICommand CancelLogoutCommand { get; set; }
+
+        public ICommand ConfirmLogoutCommand { get; set; }
+
         public MainViewModel(string rolUsuario)
         {
             RolUsuario = rolUsuario;
@@ -89,6 +96,34 @@ namespace ScheduleApp.UI.ViewModels
                     ModuloActivo = "Materias";
                 });
 
+            ShowLogoutCommand = new RelayCommand(o =>
+            {
+                CurrentView = new LogoutView();
+                ModuloActivo = "Logout";
+            });
+
+            CancelLogoutCommand = new RelayCommand(o =>
+            {
+                CurrentView = new DashboardView();
+                ModuloActivo = "Inicio";
+            });
+
+            ConfirmLogoutCommand = new RelayCommand(o =>
+            {
+            
+                var login = new LoginWindow();
+                login.Show();
+
+                
+                foreach (Window w in Application.Current.Windows)
+                {
+                    if (w is MainWindow)
+                    {
+                        w.Close();
+                        break;
+                    }
+                }
+            });
             CurrentView = new DashboardView();
             ModuloActivo = "Inicio";
         }

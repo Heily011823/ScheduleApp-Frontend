@@ -224,7 +224,8 @@
                     BorderBrush="#D4B36A"
                     BorderThickness="1.5"
                     HorizontalContentAlignment="Stretch"
-                    Padding="0">
+                    Padding="0"
+                    Command="{Binding ShowLogoutCommand}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
