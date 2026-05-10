@@ -9,16 +9,20 @@ namespace ScheduleApp.UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var loginViewModel = new LoginViewModel();
-            var loginWindow = new LoginWindow(); 
+            var loginWindow = new LoginWindow();
+
             loginWindow.DataContext = loginViewModel;
 
-            
             loginViewModel.OnLoginSuccess += () =>
             {
-                MainWindow mainWindow = new MainWindow();
+                string rolUsuario = loginViewModel.RolUsuario;
+
+                MainWindow mainWindow = new MainWindow(rolUsuario);
                 mainWindow.Show();
+
                 loginWindow.Close();
             };
+
             loginWindow.Show();
         }
     }

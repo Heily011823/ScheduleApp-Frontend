@@ -69,33 +69,97 @@ namespace ScheduleApp.UI.ViewModels
             }
         }
 
+        // COMANDOS
         public ICommand ShowDashboardCommand { get; set; }
         public ICommand ShowMateriasCommand { get; set; }
+        public ICommand ShowProgramasCommand { get; set; }
+        public ICommand ShowDocentesCommand { get; set; }
+        public ICommand ShowAulasCommand { get; set; }
+        public ICommand ShowHorariosCommand { get; set; }
+        public ICommand ShowRestriccionesCommand { get; set; }
+        public ICommand ShowUsuariosCommand { get; set; }
+        public ICommand ShowInformacionCommand { get; set; }
+        public ICommand ShowManualCommand { get; set; }
 
         public ICommand ShowLogoutCommand { get; set; }
-
         public ICommand CancelLogoutCommand { get; set; }
-
         public ICommand ConfirmLogoutCommand { get; set; }
 
         public MainViewModel(string rolUsuario)
         {
             RolUsuario = rolUsuario;
 
-            ShowDashboardCommand =
-                new RelayCommand(o =>
-                {
-                    CurrentView = new DashboardView();
-                    ModuloActivo = "Inicio";
-                });
+            // INICIO
+            ShowDashboardCommand = new RelayCommand(o =>
+            {
+                CurrentView = new DashboardView();
+                ModuloActivo = "Inicio";
+            });
 
-            ShowMateriasCommand =
-                new RelayCommand(o =>
-                {
-                    CurrentView = new MateriasView();
-                    ModuloActivo = "Materias";
-                });
+            // MATERIAS
+            ShowMateriasCommand = new RelayCommand(o =>
+            {
+                CurrentView = new MateriasView();
+                ModuloActivo = "Materias";
+            });
 
+            // PROGRAMAS
+            ShowProgramasCommand = new RelayCommand(o =>
+            {
+                CurrentView = new ProgramasView();
+                ModuloActivo = "Programas";
+            });
+
+            // DOCENTES
+            ShowDocentesCommand = new RelayCommand(o =>
+            {
+                CurrentView = new DocentesView();
+                ModuloActivo = "Docentes";
+            });
+
+            // AULAS
+            ShowAulasCommand = new RelayCommand(o =>
+            {
+                CurrentView = new AulasView();
+                ModuloActivo = "Aulas";
+            });
+
+            // HORARIOS
+            ShowHorariosCommand = new RelayCommand(o =>
+            {
+                CurrentView = new HorariosView();
+                ModuloActivo = "Horarios";
+            });
+
+            // RESTRICCIONES
+            ShowRestriccionesCommand = new RelayCommand(o =>
+            {
+                CurrentView = new RestriccionesView();
+                ModuloActivo = "Restricciones";
+            });
+
+            // USUARIOS
+            ShowUsuariosCommand = new RelayCommand(o =>
+            {
+                CurrentView = new UsuariosView();
+                ModuloActivo = "Usuarios";
+            });
+
+            // INFORMACIÓN
+            ShowInformacionCommand = new RelayCommand(o =>
+            {
+                CurrentView = new InformacionView();
+                ModuloActivo = "Información";
+            });
+
+            // MANUAL
+            ShowManualCommand = new RelayCommand(o =>
+            {
+                CurrentView = new InformacionView();
+                ModuloActivo = "Manual";
+            });
+
+            // LOGOUT
             ShowLogoutCommand = new RelayCommand(o =>
             {
                 CurrentView = new LogoutView();
@@ -110,11 +174,9 @@ namespace ScheduleApp.UI.ViewModels
 
             ConfirmLogoutCommand = new RelayCommand(o =>
             {
-            
                 var login = new LoginWindow();
                 login.Show();
 
-                
                 foreach (Window w in Application.Current.Windows)
                 {
                     if (w is MainWindow)
@@ -124,6 +186,8 @@ namespace ScheduleApp.UI.ViewModels
                     }
                 }
             });
+
+            // VISTA INICIAL
             CurrentView = new DashboardView();
             ModuloActivo = "Inicio";
         }

@@ -20,8 +20,8 @@
             <Setter Property="BorderBrush" Value="#1B2A41"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
     </Window.Resources>
 
@@ -31,6 +31,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- MENÚ LATERAL -->
         <Grid Grid.Column="0" Background="#1B2A41">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -43,27 +44,30 @@
 
                 <StackPanel Margin="25,10,25,20">
 
+                    <!-- LOGO -->
                     <Image Source="pack://application:,,,/Assets/Logo.jpeg"
                            Height="150"
                            Stretch="Uniform"
                            Margin="0,0,0,10"/>
 
+                    <!-- ROL -->
                     <StackPanel HorizontalAlignment="Center"
                                 Margin="0,0,0,20">
 
                         <Image Source="{Binding ImagenRol}"
-                               Width="40"
-                               Height="40"
+                               Width="45"
+                               Height="45"
                                Stretch="Uniform"
                                Margin="0,0,0,5"/>
 
                         <TextBlock Text="{Binding RolUsuario}"
-                                   HorizontalAlignment="Center"
                                    Foreground="White"
+                                   FontWeight="Bold"
                                    FontSize="14"
-                                   FontWeight="Bold"/>
+                                   HorizontalAlignment="Center"/>
                     </StackPanel>
 
+                    <!-- INICIO -->
                     <Button Command="{Binding ShowDashboardCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -76,28 +80,18 @@
                             </Style>
                         </Button.Style>
 
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Image Source="pack://application:,,,/Assets/Inicio.png"
-                                   Width="30"
-                                   Height="30"
-                                   Stretch="Uniform"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Inicio"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Inicio"
                                        Foreground="White"
-                                       FontSize="13"/>
-                        </Grid>
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
+                    <!-- MATERIAS -->
                     <Button Command="{Binding ShowMateriasCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -110,155 +104,251 @@
                             </Style>
                         </Button.Style>
 
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Image Source="pack://application:,,,/Assets/Materias.png"
-                                   Width="30"
-                                   Height="30"
-                                   Stretch="Uniform"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Materias"
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Materias"
                                        Foreground="White"
-                                       FontSize="13"/>
-                        </Grid>
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Programas.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Programas" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                    <!-- PROGRAMAS -->
+                    <Button Command="{Binding ShowProgramasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Programas">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Programas.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Programas"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Docentes.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Docentes" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                    <!-- DOCENTES -->
+                    <Button Command="{Binding ShowDocentesCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Docentes">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Docentes.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Docentes"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Aulas.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Aulas" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                    <!-- AULAS -->
+                    <Button Command="{Binding ShowAulasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Aulas">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Aulas.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Aulas"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Horarios.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Horarios" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                    <!-- HORARIOS -->
+                    <Button Command="{Binding ShowHorariosCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Horarios">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Horarios.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Horarios"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Restricciones.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Restricciones" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                    <!-- RESTRICCIONES -->
+                    <Button Command="{Binding ShowRestriccionesCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Restricciones">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Restricciones.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Restricciones"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}"
+                    <!-- USUARIOS SOLO ADMIN -->
+                    <Button Command="{Binding ShowUsuariosCommand}"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/Usuarios.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Usuarios" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Usuarios">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Usuarios.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Usuarios"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}"
+                    <!-- MANUAL SOLO ADMIN -->
+                    <Button Command="{Binding ShowManualCommand}"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <Grid Width="210">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="pack://application:,,,/Assets/ManualUsuario.png" Width="30" Height="30" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" Text="Manual del sistema" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
-                        </Grid>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Manual">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/ManualUsuario.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Manual del sistema"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- INFORMACIÓN -->
+                    <Button Command="{Binding ShowInformacionCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Información">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Informacion.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Información"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
 
                 </StackPanel>
             </ScrollViewer>
 
+            <!-- CERRAR SESIÓN -->
             <Button Grid.Row="1"
-                    Height="42"
-                    Width="190"
+                    Command="{Binding ShowLogoutCommand}"
+                    Height="44"
+                    Width="210"
                     Margin="0,10,0,25"
                     HorizontalAlignment="Center"
                     Background="#1B2A41"
-                    Foreground="White"
                     BorderBrush="#D4B36A"
-                    BorderThickness="1.5"
-                    HorizontalContentAlignment="Stretch"
-                    Padding="0"
-                    Command="{Binding ShowLogoutCommand}">
+                    Cursor="Hand">
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="55"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
 
                     <Image Source="pack://application:,,,/Assets/CerrarSesion.png"
-                           Width="26"
-                           Height="26"
-                           Stretch="Uniform"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           Width="18"
+                           Height="18"
+                           Margin="0,0,12,0"/>
 
-                    <TextBlock Grid.Column="1"
-                               Text="Cerrar sesión"
+                    <TextBlock Text="Cerrar sesión"
                                Foreground="White"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"/>
-                </Grid>
+                               VerticalAlignment="Center"/>
+                </StackPanel>
             </Button>
         </Grid>
 
+        <!-- CONTENIDO -->
         <Grid Grid.Column="1" Background="White">
+
             <Image Source="pack://application:,,,/Assets/ImagenFondo.jpeg"
                    Opacity="0.12"
-                   Stretch="Uniform"
                    Width="750"
+                   Stretch="Uniform"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>
 
-            <ContentControl Content="{Binding CurrentView}"
-                            Background="Transparent"/>
+            <ContentControl Content="{Binding CurrentView}"/>
         </Grid>
     </Grid>
 </Window>
