@@ -8,7 +8,7 @@ namespace ScheduleApp.UI.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly FakeAuthenticationService _authenticationService;
 
         private string _usuario = string.Empty;
         private string _contrasena = string.Empty;
@@ -69,7 +69,8 @@ namespace ScheduleApp.UI.ViewModels
         {
             MensajeError = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(Usuario) || Usuario == "Ingresa tu usuario o correo")
+            if (string.IsNullOrWhiteSpace(Usuario) ||
+                Usuario == "Ingresa tu usuario o correo")
             {
                 MensajeError = "Debe ingresar el usuario.";
                 return;
@@ -83,14 +84,8 @@ namespace ScheduleApp.UI.ViewModels
 
             if (_authenticationService.Login(Usuario, Contrasena))
             {
-                if (Usuario.ToLower() == "admin" || Usuario.ToLower() == "administrador")
-                {
-                    RolUsuario = "Administrador";
-                }
-                else
-                {
-                    RolUsuario = "Coordinador";
-                }
+               
+                RolUsuario = _authenticationService.Role;
 
                 OnLoginSuccess?.Invoke();
             }
@@ -102,9 +97,12 @@ namespace ScheduleApp.UI.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string? nombre = null)
+        protected void OnPropertyChanged(
+            [CallerMemberName] string? nombre = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
+            PropertyChanged?.Invoke(
+                this,
+                new PropertyChangedEventArgs(nombre));
         }
     }
 }

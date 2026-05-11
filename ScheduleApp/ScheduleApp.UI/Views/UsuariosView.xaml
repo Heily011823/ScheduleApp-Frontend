@@ -220,22 +220,22 @@
 
             <!-- TABLA -->
             <DataGrid x:Name="UsersDataGrid"
-
-                      Margin="20,240,20,120"
-                      AutoGenerateColumns="False"
-                      HeadersVisibility="Column"
-                      CanUserAddRows="False"
-                      RowHeight="55"
-                      FontSize="14"
-                      Background="White"
-                      BorderBrush="#A6A6A6"
-                      BorderThickness="1"
-                      GridLinesVisibility="All"
-                      HorizontalGridLinesBrush="#A6A6A6"
-                      VerticalGridLinesBrush="#A6A6A6"
-                      HorizontalScrollBarVisibility="Disabled"
-                      HorizontalContentAlignment="Center"
-                      VerticalContentAlignment="Center">
+          ItemsSource="{Binding Usuarios}"
+          Margin="20,240,20,120"
+          AutoGenerateColumns="False"
+          HeadersVisibility="Column"
+          CanUserAddRows="False"
+          RowHeight="55"
+          FontSize="14"
+          Background="White"
+          BorderBrush="#A6A6A6"
+          BorderThickness="1"
+          GridLinesVisibility="All"
+          HorizontalGridLinesBrush="#A6A6A6"
+          VerticalGridLinesBrush="#A6A6A6"
+          HorizontalScrollBarVisibility="Disabled"
+          HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center">
 
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
@@ -248,169 +248,113 @@
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Usuario"
-                        Width="*"
-                        Binding="{Binding Username}">
-
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-
-                    </DataGridTextColumn>
+                            Width="*"
+                            Binding="{Binding Username}"/>
 
                     <DataGridTextColumn Header="Nombre Completo"
-                                        Width="2*"
-                                        Binding="{Binding FullName}">
-
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-
-                    </DataGridTextColumn>
+                            Width="2*"
+                            Binding="{Binding FullName}"/>
 
                     <DataGridTextColumn Header="Correo"
-                                        Width="2*"
-                                        Binding="{Binding Email}">
+                            Width="2*"
+                            Binding="{Binding Email}"/>
 
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-
-                    </DataGridTextColumn>
-
-
-                    <!-- ESTADO -->
                     <DataGridTemplateColumn Header="Estado"
-                                            Width="*">
-
-                        <DataGridTemplateColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-
-                                <Setter Property="Padding" Value="0"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-
-                            </Style>
-                        </DataGridTemplateColumn.CellStyle>
-
+                                Width="*">
                         <DataGridTemplateColumn.CellTemplate>
-
                             <DataTemplate>
+                                <Border HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="0">
 
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#E53935"/>
 
-                                <Border Background="#2E7D32"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        Margin="0">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="Activo">
+                                                    <Setter Property="Background" Value="#2E7D32"/>
+                                                </DataTrigger>
 
-                                    <TextBlock Text="Activo"
-                                               Foreground="White"
-                                               FontWeight="Bold"
-                                               HorizontalAlignment="Center"
-                                               TextAlignment="Center"
-                                               VerticalAlignment="Center"/>
+                                                <DataTrigger Binding="{Binding Status}" Value="Inactivo">
+                                                    <Setter Property="Background" Value="#E53935"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
 
+                                    <TextBlock Text="{Binding Status}"
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"/>
                                 </Border>
-
                             </DataTemplate>
-
                         </DataGridTemplateColumn.CellTemplate>
-
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Rol"
-                                        Width="*"
-                                        Binding="{Binding Role}">
+                            Width="*"
+                            Binding="{Binding Role}"/>
 
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-
-                    </DataGridTextColumn>
-
-                    <!-- ACCIONES -->
                     <DataGridTemplateColumn Header="Acciones"
-                                            Width="1.5*">
-
+                                Width="1.5*">
                         <DataGridTemplateColumn.CellTemplate>
-
                             <DataTemplate>
-
                                 <Grid Height="55"
-                                      Background="White">
+                          Background="White">
 
                                     <Border BorderBrush="#A6A6A6"
-                                            BorderThickness="0.5"
-                                            Margin="-1">
+                                BorderThickness="0.5"
+                                Margin="-1">
 
                                         <StackPanel Orientation="Horizontal"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center">
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
 
-                                            <!-- VER -->
                                             <Button Width="32"
-                                                    Height="32"
-                                                    Margin="2"
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    FontSize="16"
-                                                    Cursor="Hand"
-                                                    ToolTip="Ver usuario"
-                                                    Content="👁"/>
+                                        Height="32"
+                                        Margin="2"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"
+                                        Cursor="Hand"
+                                        ToolTip="Ver usuario"
+                                        Content="👁"/>
 
-                                            <!-- EDITAR -->
                                             <Button Width="32"
-                                                    Height="32"
-                                                    Margin="2"
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    FontSize="16"
-                                                    Cursor="Hand"
-                                                    ToolTip="Editar usuario"
-                                                    Foreground="#2F6FED"
-                                                    Content="✎"/>
+                                        Height="32"
+                                        Margin="2"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"
+                                        Cursor="Hand"
+                                        ToolTip="Editar usuario"
+                                        Foreground="#2F6FED"
+                                        Content="✎"/>
 
-                                            <!-- ELIMINAR -->
                                             <Button Width="32"
-                                                    Height="32"
-                                                    Margin="2"
-                                                    Background="Transparent"
-                                                    BorderThickness="0"
-                                                    FontSize="16"
-                                                    Cursor="Hand"
-                                                    ToolTip="Eliminar usuario"
-                                                    Foreground="#E53935"
-                                                    Content="🗑"/>
+                                        Height="32"
+                                        Margin="2"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        FontSize="16"
+                                        Cursor="Hand"
+                                        ToolTip="Eliminar usuario"
+                                        Foreground="#E53935"
+                                        Content="🗑"/>
 
                                         </StackPanel>
 
                                     </Border>
 
                                 </Grid>
-
                             </DataTemplate>
-
                         </DataGridTemplateColumn.CellTemplate>
-
                     </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
-
             </DataGrid>
 
             <!-- PAGINACIÓN -->
