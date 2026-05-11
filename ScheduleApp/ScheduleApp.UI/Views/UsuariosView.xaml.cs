@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,17 @@ namespace ScheduleApp.UI.Views
         public UsuariosView()
         {
             InitializeComponent();
+
+            //Users = new ObservableCollection<User>();
+
+            //UsersDataGrid.ItemsSource = Users;
         }
+
+        //private void BtnNuevoUsuario_Click(object sender, System.Windows.RoutedEventArgs e)
+        //{
+            //NewUserView ventana = new NewUserView(Users);
+
+            //ventana.ShowDialog();
+        //}
     }
 }
