@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
 
 namespace ScheduleApp.UI.Models;
 
@@ -22,7 +18,11 @@ public class UserModel
 
     public string ConfirmPassword { get; set; } = string.Empty;
 
-    public string Role { get; set; } = string.Empty;
+
+    public string RoleName { get; set; } = string.Empty;
+
+  
+    public string Role => RoleName;
 
     public bool IsActive { get; set; } = true;
 
