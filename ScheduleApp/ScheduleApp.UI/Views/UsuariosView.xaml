@@ -327,16 +327,17 @@
                                         Content="👁"/>
 
                                             <Button Width="32"
-                                        Height="32"
-                                        Margin="2"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Cursor="Hand"
-                                        ToolTip="Editar usuario"
-                                        Foreground="#2F6FED"
-                                        Content="✎"/>
-
+        Height="32"
+        Margin="2"
+        Background="Transparent"
+        BorderThickness="0"
+        FontSize="16"
+        Cursor="Hand"
+        ToolTip="Editar usuario"
+        Foreground="#2F6FED"
+        Content="✎"
+        Command="{Binding DataContext.ShowEditUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+        CommandParameter="{Binding}"/>
                                             <Button Width="32"
                                         Height="32"
                                         Margin="2"

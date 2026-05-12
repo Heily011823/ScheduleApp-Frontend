@@ -13,7 +13,9 @@ namespace ScheduleApp.UI.ViewModels
     public class UserFormViewModel : INotifyPropertyChanged
     {
         private readonly UserApiService _userApiService;
+        private readonly UserModel? _userToEdit;
 
+        private string _formTitle = "Nuevo Usuario";
         private string _fullName = string.Empty;
         private string _email = string.Empty;
         private string _username = string.Empty;
@@ -26,6 +28,14 @@ namespace ScheduleApp.UI.ViewModels
 
         public event Action? OnCancel;
         public event Action? OnSaveSuccess;
+
+        public bool IsEditMode => _userToEdit != null;
+
+        public string FormTitle
+        {
+            get => _formTitle;
+            set { _formTitle = value; OnPropertyChanged(); }
+        }
 
         public string FullName
         {
@@ -87,6 +97,25 @@ namespace ScheduleApp.UI.ViewModels
         public UserFormViewModel()
         {
             _userApiService = new UserApiService();
+            FormTitle = "Nuevo Usuario";
+
+            SaveCommand = new RelayCommand(async o => await ExecuteSaveAsync());
+            CancelCommand = new RelayCommand(ExecuteCancel);
+        }
+
+        public UserFormViewModel(UserModel userToEdit)
+        {
+            _userApiService = new UserApiService();
+            _userToEdit = userToEdit;
+
+            FormTitle = "Editar Usuario";
+
+            FullName = userToEdit.FullName;
+            Email = userToEdit.Email;
+            Username = userToEdit.Username;
+            IdentityDocument = userToEdit.IdentityDocument;
+            SelectedRole = userToEdit.RoleName;
+            SelectedStatus = userToEdit.IsActive ? "Activo" : "Inactivo";
 
             SaveCommand = new RelayCommand(async o => await ExecuteSaveAsync());
             CancelCommand = new RelayCommand(ExecuteCancel);
@@ -96,7 +125,6 @@ namespace ScheduleApp.UI.ViewModels
         {
             ErrorMessage = string.Empty;
 
-            // NOMBRE
             if (string.IsNullOrWhiteSpace(FullName))
             {
                 ErrorMessage = "El nombre completo es obligatorio.";
@@ -115,7 +143,6 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            // EMAIL
             if (string.IsNullOrWhiteSpace(Email))
             {
                 ErrorMessage = "El correo es obligatorio.";
@@ -134,7 +161,6 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            // USERNAME
             if (string.IsNullOrWhiteSpace(Username))
             {
                 ErrorMessage = "El usuario es obligatorio.";
@@ -153,7 +179,6 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            // DOCUMENTO
             if (string.IsNullOrWhiteSpace(IdentityDocument))
             {
                 ErrorMessage = "El documento es obligatorio.";
@@ -172,87 +197,99 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            // PASSWORD
-            if (string.IsNullOrWhiteSpace(Password))
+            // En creación la contraseña es obligatoria.
+            // En edición solo se valida si el admin escribió una nueva contraseña.
+            if (!IsEditMode || !string.IsNullOrWhiteSpace(Password))
             {
-                ErrorMessage = "La contraseña es obligatoria.";
-                return;
+                if (string.IsNullOrWhiteSpace(Password))
+                {
+                    ErrorMessage = "La contraseña es obligatoria.";
+                    return;
+                }
+
+                if (Password.Length < 8)
+                {
+                    ErrorMessage = "La contraseña debe tener mínimo 8 caracteres.";
+                    return;
+                }
+
+                if (!Regex.IsMatch(Password, @"[A-Z]"))
+                {
+                    ErrorMessage = "La contraseña debe tener una mayúscula.";
+                    return;
+                }
+
+                if (!Regex.IsMatch(Password, @"[a-z]"))
+                {
+                    ErrorMessage = "La contraseña debe tener una minúscula.";
+                    return;
+                }
+
+                if (!Regex.IsMatch(Password, @"[0-9]"))
+                {
+                    ErrorMessage = "La contraseña debe tener un número.";
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(ConfirmPassword))
+                {
+                    ErrorMessage = "Debe confirmar la contraseña.";
+                    return;
+                }
+
+                if (Password != ConfirmPassword)
+                {
+                    ErrorMessage = "Las contraseñas no coinciden.";
+                    return;
+                }
             }
 
-            if (Password.Length < 8)
-            {
-                ErrorMessage = "La contraseña debe tener mínimo 8 caracteres.";
-                return;
-            }
-
-            if (!Regex.IsMatch(Password, @"[A-Z]"))
-            {
-                ErrorMessage = "La contraseña debe tener una mayúscula.";
-                return;
-            }
-
-            if (!Regex.IsMatch(Password, @"[a-z]"))
-            {
-                ErrorMessage = "La contraseña debe tener una minúscula.";
-                return;
-            }
-
-            if (!Regex.IsMatch(Password, @"[0-9]"))
-            {
-                ErrorMessage = "La contraseña debe tener un número.";
-                return;
-            }
-
-            // CONFIRMAR PASSWORD
-            if (string.IsNullOrWhiteSpace(ConfirmPassword))
-            {
-                ErrorMessage = "Debe confirmar la contraseña.";
-                return;
-            }
-
-            if (Password != ConfirmPassword)
-            {
-                ErrorMessage = "Las contraseñas no coinciden.";
-                return;
-            }
-
-            // ROL
             if (string.IsNullOrWhiteSpace(SelectedRole))
             {
                 ErrorMessage = "Debe seleccionar un rol.";
                 return;
             }
 
-            // ESTADO
             if (string.IsNullOrWhiteSpace(SelectedStatus))
             {
                 ErrorMessage = "Debe seleccionar un estado.";
                 return;
             }
+
             var user = new UserModel
             {
+                Id = _userToEdit?.Id ?? Guid.Empty,
                 FullName = FullName,
                 Email = Email,
                 Username = Username,
                 IdentityDocument = IdentityDocument,
                 Password = Password,
                 ConfirmPassword = ConfirmPassword,
-
                 RoleName = SelectedRole,
-
                 IsActive = SelectedStatus == "Activo"
             };
 
-            bool created = await _userApiService.CreateUserAsync(user);
+            bool saved;
 
-            if (!created)
+            if (IsEditMode && _userToEdit != null)
             {
-                ErrorMessage = "No se pudo guardar el usuario. Verifica que el correo, usuario o documento no existan.";
+                saved = await _userApiService.UpdateUserAsync(_userToEdit.Id, user);
+            }
+            else
+            {
+                saved = await _userApiService.CreateUserAsync(user);
+            }
+
+            if (!saved)
+            {
+                ErrorMessage = IsEditMode
+                    ? "No se pudo actualizar el usuario."
+                    : "No se pudo guardar el usuario. Verifica que el correo, usuario o documento no existan.";
                 return;
             }
 
             MessageBox.Show(
-                "Usuario guardado correctamente.",
+                IsEditMode ? "Usuario actualizado correctamente." : "Usuario guardado correctamente.",
                 "Éxito",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);

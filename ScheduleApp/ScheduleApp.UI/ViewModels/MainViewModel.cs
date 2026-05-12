@@ -1,4 +1,5 @@
-﻿using ScheduleApp.UI.Services;
+﻿using ScheduleApp.UI.Models;
+using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
 
 using System.Windows;
@@ -88,6 +89,7 @@ namespace ScheduleApp.UI.ViewModels
         public ICommand ShowLogoutCommand { get; set; }
         public ICommand CancelLogoutCommand { get; set; }
         public ICommand ConfirmLogoutCommand { get; set; }
+        public ICommand ShowEditUserFormCommand { get; set; }
 
         public MainViewModel(string rolUsuario)
         {
@@ -98,6 +100,36 @@ namespace ScheduleApp.UI.ViewModels
             {
                 CurrentView = new DashboardView();
                 ModuloActivo = "Inicio";
+            });
+
+            //EDITAR USUARIO
+            ShowEditUserFormCommand = new RelayCommand(o =>
+            {
+                if (o is not UserModel selectedUser)
+                {
+                    MessageBox.Show("Debe seleccionar un usuario para editar.");
+                    return;
+                }
+
+                var userFormViewModel = new UserFormViewModel(selectedUser);
+
+                userFormViewModel.OnCancel += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
+
+                userFormViewModel.OnSaveSuccess += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
+
+                var userFormView = new UserFormView();
+                userFormView.DataContext = userFormViewModel;
+
+                CurrentView = userFormView;
+                ModuloActivo = "Usuarios";
             });
 
             //AGREGAR USUARIO
