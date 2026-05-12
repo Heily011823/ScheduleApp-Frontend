@@ -219,12 +219,15 @@
 
 
             <!-- TABLA -->
+           
             <DataGrid x:Name="UsersDataGrid"
           ItemsSource="{Binding Usuarios}"
           Margin="20,240,20,120"
           AutoGenerateColumns="False"
-          HeadersVisibility="Column"
+          IsReadOnly="True"
           CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          HeadersVisibility="Column"
           RowHeight="55"
           FontSize="14"
           Background="White"
