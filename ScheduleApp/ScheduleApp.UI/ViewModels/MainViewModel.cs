@@ -1,6 +1,9 @@
 ﻿using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
+
 using System.Windows;
+
+
 using System.Windows.Input;
 
 namespace ScheduleApp.UI.ViewModels
@@ -190,6 +193,9 @@ namespace ScheduleApp.UI.ViewModels
             // VISTA INICIAL
             CurrentView = new DashboardView();
             ModuloActivo = "Inicio";
+
+            
+
         }
     }
 }
