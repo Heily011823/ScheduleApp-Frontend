@@ -161,7 +161,6 @@ namespace ScheduleApp.UI.ViewModels
                 CurrentView = new InformacionView();
                 ModuloActivo = "Manual";
             });
-
             // LOGOUT
             ShowLogoutCommand = new RelayCommand(o =>
             {
@@ -177,8 +176,20 @@ namespace ScheduleApp.UI.ViewModels
 
             ConfirmLogoutCommand = new RelayCommand(o =>
             {
-                var login = new LoginWindow();
-                login.Show();
+                var loginViewModel = new LoginViewModel();
+                var loginWindow = new LoginWindow(loginViewModel);
+
+                loginViewModel.OnLoginSuccess += () =>
+                {
+                    string rolUsuario = loginViewModel.RolUsuario;
+
+                    MainWindow mainWindow = new MainWindow(rolUsuario);
+                    mainWindow.Show();
+
+                    loginWindow.Close();
+                };
+
+                loginWindow.Show();
 
                 foreach (Window w in Application.Current.Windows)
                 {

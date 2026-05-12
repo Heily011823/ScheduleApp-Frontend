@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ScheduleApp.UI.ViewModels;
 
 namespace ScheduleApp.UI.Views
 {
@@ -7,6 +8,14 @@ namespace ScheduleApp.UI.Views
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        public LoginWindow(LoginViewModel loginViewModel)
+        {
+            InitializeComponent();
+
+            DataContext = loginViewModel;
+            LoginViewControl.DataContext = loginViewModel;
         }
     }
 }

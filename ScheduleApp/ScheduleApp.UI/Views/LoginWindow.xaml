@@ -12,6 +12,6 @@
         Background="Transparent">
 
     <Grid>
-        <view:LoginView/>
+        <view:LoginView x:Name="LoginViewControl"/>
     </Grid>
 </Window>
