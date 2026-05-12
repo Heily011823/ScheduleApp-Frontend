@@ -392,15 +392,16 @@
 
             <!-- NUEVO USUARIO -->
             <Button Content="+ Nuevo usuario"
-            Width="220"
-            Height="50"
-            FontSize="18"
-            Background="#1B2A41"
-            Foreground="White"
-            BorderThickness="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="0,0,25,25">
+        Width="220"
+        Height="50"
+        FontSize="18"
+        Background="#1B2A41"
+        Foreground="White"
+        BorderThickness="0"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Bottom"
+        Margin="0,0,25,25"
+        Command="{Binding DataContext.ShowUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

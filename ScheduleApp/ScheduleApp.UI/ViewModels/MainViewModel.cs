@@ -84,6 +84,7 @@ namespace ScheduleApp.UI.ViewModels
         public ICommand ShowInformacionCommand { get; set; }
         public ICommand ShowManualCommand { get; set; }
 
+        public ICommand ShowUserFormCommand { get; set; }
         public ICommand ShowLogoutCommand { get; set; }
         public ICommand CancelLogoutCommand { get; set; }
         public ICommand ConfirmLogoutCommand { get; set; }
@@ -98,6 +99,30 @@ namespace ScheduleApp.UI.ViewModels
                 CurrentView = new DashboardView();
                 ModuloActivo = "Inicio";
             });
+
+            //AGREGAR USUARIO
+            ShowUserFormCommand = new RelayCommand(o =>
+             {
+                 var userFormViewModel = new UserFormViewModel();
+
+                 userFormViewModel.OnCancel += () =>
+                 {
+                     CurrentView = new UsuariosView();
+                     ModuloActivo = "Usuarios";
+                 };
+
+                 userFormViewModel.OnSaveSuccess += () =>
+                 {
+                     CurrentView = new UsuariosView();
+                     ModuloActivo = "Usuarios";
+                 };
+
+                 var userFormView = new UserFormView();
+                 userFormView.DataContext = userFormViewModel;
+
+                 CurrentView = userFormView;
+                 ModuloActivo = "Usuarios";
+             });
 
             // MATERIAS
             ShowMateriasCommand = new RelayCommand(o =>
@@ -177,7 +202,8 @@ namespace ScheduleApp.UI.ViewModels
             ConfirmLogoutCommand = new RelayCommand(o =>
             {
                 var loginViewModel = new LoginViewModel();
-                var loginWindow = new LoginWindow(loginViewModel);
+                var loginWindow = new LoginWindow();
+                loginWindow.DataContext = loginViewModel;
 
                 loginViewModel.OnLoginSuccess += () =>
                 {

@@ -5,11 +5,13 @@ using System.Windows.Input;
 using ScheduleApp.UI.Models;
 using ScheduleApp.UI.Services;
 
+
 namespace ScheduleApp.UI.ViewModels;
 
 public class UsuariosViewModel : BaseViewModel
 {
     private readonly UserApiService _userApiService = new();
+    
 
     public ObservableCollection<UserModel> Usuarios { get; set; } = new();
 
