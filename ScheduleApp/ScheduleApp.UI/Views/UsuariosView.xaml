@@ -299,7 +299,7 @@
 
                     <DataGridTextColumn Header="Rol"
                             Width="*"
-                            Binding="{Binding Role}"/>
+                            Binding="{Binding RoleName}"/>
 
                     <DataGridTemplateColumn Header="Acciones"
                                 Width="1.5*">
