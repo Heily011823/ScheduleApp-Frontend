@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ScheduleApp.UI.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,23 @@ namespace ScheduleApp.UI
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel("Administrador");
+            DataContext = new MainViewModel("Coordinador");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

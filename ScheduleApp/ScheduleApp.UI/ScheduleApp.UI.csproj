@@ -1,18 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\ImagenFondo.jpeg" />
+		<None Remove="Assets\Logo.jpeg" />
+		<None Remove="Assets\PanelIzquierdoLogin.png" />
+
+		<None Remove="Assets\Administrador.png" />
+		<None Remove="Assets\Coordinador.png" />
+		<None Remove="Assets\CerrarSesion.png" />
+		<None Remove="Assets\Inicio.png" />
+		<None Remove="Assets\Materias.png" />
+		<None Remove="Assets\Programas.png" />
+		<None Remove="Assets\Docentes.png" />
+		<None Remove="Assets\Aulas.png" />
+		<None Remove="Assets\Horarios.png" />
+		<None Remove="Assets\Restricciones.png" />
+		<None Remove="Assets\Usuarios.png" />
+		<None Remove="Assets\ManualUsuario.png" />
+		<None Remove="Assets\Informacion.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Assets\ImagenFondo.jpeg" />
+		<Resource Include="Assets\Logo.jpeg" />
+		<Resource Include="Assets\PanelIzquierdoLogin.png" />
+
+		<Resource Include="Assets\Administrador.png" />
+		<Resource Include="Assets\Coordinador.png" />
+		<Resource Include="Assets\CerrarSesion.png" />
+		<Resource Include="Assets\Inicio.png" />
+		<Resource Include="Assets\Materias.png" />
+		<Resource Include="Assets\Programas.png" />
+		<Resource Include="Assets\Docentes.png" />
+		<Resource Include="Assets\Aulas.png" />
+		<Resource Include="Assets\Horarios.png" />
+		<Resource Include="Assets\Restricciones.png" />
+		<Resource Include="Assets\Usuarios.png" />
+		<Resource Include="Assets\ManualUsuario.png" />
+		<Resource Include="Assets\Informacion.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\" />
+	</ItemGroup>
 
 </Project>
