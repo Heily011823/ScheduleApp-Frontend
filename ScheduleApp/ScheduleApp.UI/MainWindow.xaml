@@ -3,10 +3,340 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ScheduleApp.UI"
+        xmlns:vm="clr-namespace:ScheduleApp.UI.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ScheduleApp"
+        Height="750"
+        Width="1200"
+        WindowStartupLocation="CenterScreen">
 
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Background" Value="#1B2A41"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#1B2A41"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#1B2A41">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+
+                <StackPanel Margin="25,10,25,20">
+
+                    <Image Source="/Assets/Logo.jpeg"
+                           Height="150"
+                           Stretch="Uniform"
+                           Margin="0,0,0,10"/>
+
+                    <!-- ROL CON IMAGEN DINÁMICA -->
+                    <StackPanel HorizontalAlignment="Center"
+                                Margin="0,0,0,20">
+
+                        <Image Source="{Binding ImagenRol}"
+                               Width="35"
+                               Height="35"
+                               Stretch="Uniform"
+                               Margin="0,0,0,5"/>
+
+                        <TextBlock Text="{Binding RolUsuario}"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontWeight="Bold"/>
+                    </StackPanel>
+
+                    <!-- INICIO -->
+                    <Button Command="{Binding ShowDashboardCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Inicio">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Inicio.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Inicio"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- MATERIAS -->
+                    <Button Command="{Binding ShowMateriasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Materias">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Materias.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Materias"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontSize="13"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Programas.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Programas"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Docentes.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Docentes"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Aulas.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Aulas"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Horarios.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Horarios"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Restricciones.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Restricciones"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/Usuarios.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Usuarios"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource MenuButtonStyle}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid Width="210">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Assets/ManualUsuario.png"
+                                   Width="28"
+                                   Height="28"
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="Manual del sistema"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- CERRAR SESIÓN CON ICONO -->
+            <Button Grid.Row="1"
+                    Height="40"
+                    Width="190"
+                    Margin="0,10,0,25"
+                    HorizontalAlignment="Center"
+                    Background="#1B2A41"
+                    Foreground="White"
+                    BorderBrush="#D4B36A"
+                    BorderThickness="1.5"
+                    HorizontalContentAlignment="Stretch"
+                    Padding="0">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="55"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="/Assets/CerrarSesion.png"
+                           Width="24"
+                           Height="24"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Column="1"
+                               Text="Cerrar sesión"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"/>
+                </Grid>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="White">
+            <Image Source="/Assets/ImagenFondo.jpeg"
+                   Opacity="0.8"
+                   Stretch="Uniform"
+                   Width="750"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+            <ContentControl Content="{Binding CurrentView}"
+                            Background="Transparent"/>
+        </Grid>
     </Grid>
 </Window>
