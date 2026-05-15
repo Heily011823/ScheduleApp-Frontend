@@ -9,8 +9,6 @@
 
     <UserControl.Resources>
 
-        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-
         <Style x:Key="ComboBoxPlaceholderStyle" TargetType="ComboBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -591,6 +589,7 @@
                     </Border>
                 </ControlTemplate>
             </Button.Template>
+
         </Button>
 >>>>>>> feature/19-login-ui
 
