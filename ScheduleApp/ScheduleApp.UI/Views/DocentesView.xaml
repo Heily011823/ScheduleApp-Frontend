@@ -5,8 +5,125 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ScheduleApp.UI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="750" d:DesignWidth="1100">
+
+    <Grid Background="White" Margin="30,20,30,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,20">
+                <TextBlock Text="Docentes" 
+                           FontFamily="Segoe UI" 
+                           FontSize="36" 
+                           FontWeight="Bold" 
+                           Foreground="Black" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center"/>
+
+                <Button HorizontalAlignment="Right" 
+                        Width="140" Height="40" 
+                        Background="#D9D9D9" 
+                        BorderBrush="#A6A6A6" 
+                        BorderThickness="1.5" 
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="6">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="📤 " FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Exportar  ›" FontSize="16" FontWeight="SemiBold" Foreground="#333333" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <Border Grid.Row="1" 
+                    Width="450" Height="45" 
+                    BorderBrush="Black" 
+                    BorderThickness="1.5" 
+                    HorizontalAlignment="Left" 
+                    Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                               Text="🔍" 
+                               FontSize="18" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               Foreground="Gray"/>
+
+                    <TextBox Grid.Column="1" 
+                             BorderThickness="0" 
+                             FontSize="16" 
+                             VerticalContentAlignment="Center" 
+                             Background="Transparent"
+                             Text="Buscar docentes"/>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+
+                <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,25,0" SelectedIndex="0">
+                    <ComboBoxItem Content="Especialidad"/>
+                    <ComboBoxItem Content="Sistemas"/>
+                    <ComboBoxItem Content="Matemáticas"/>
+                </ComboBox>
+
+                <ComboBox Width="180" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" SelectedIndex="0">
+                    <ComboBoxItem Content="Estado"/>
+                    <ComboBoxItem Content="Activo"/>
+                    <ComboBoxItem Content="Inactivo"/>
+                </ComboBox>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,10,0,20">
+
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,15,0,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Content="≪" FontSize="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0"/>
+                <Border Background="#1B2A41" Width="35" Height="35">
+                    <TextBlock Text="1" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <Button Content="≫" FontSize="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            </StackPanel>
+
+            <Button HorizontalAlignment="Right" 
+                    Content="+ Nuevo docente" 
+                    Width="220" Height="50" 
+                    Background="#112233" Foreground="White" 
+                    FontSize="18" FontWeight="Bold" Cursor="Hand" BorderThickness="0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
     </Grid>
 </UserControl>
