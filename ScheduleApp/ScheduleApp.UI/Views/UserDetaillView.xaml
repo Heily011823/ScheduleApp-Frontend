@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="ScheduleApp.UI.Views.UserDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="White">
+
+        <TextBlock Text="Detalle de usuario"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   Foreground="Black"
+                   Margin="40,45,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+
+        <Border Width="953"
+                Height="550"
+                CornerRadius="30"
+                BorderThickness="1"
+                BorderBrush="#C9D2E3"
+                Background="White"
+                Margin="0,90,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center">
+
+            <StackPanel Margin="50,40,50,40">
+
+                <TextBlock Text="Información básica del usuario"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#0B132A"
+                           Margin="0,0,0,35" Width="813"/>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="814">
+                    <Run Text="Usuario: " FontWeight="Bold"/>
+                    <Run Text="{Binding Username, Mode=OneWay}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="816">
+                    <Run Text="Nombre completo: " FontWeight="Bold"/>
+                    <Run Text="{Binding FullName, Mode=OneWay}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="813">
+                    <Run Text="Documento de identidad: " FontWeight="Bold"/>
+                    <Run Text="{Binding IdentityDocument, Mode=OneWay}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="814">
+                    <Run Text="Correo: " FontWeight="Bold"/>
+                    <Run Text="{Binding Email, Mode=OneWay}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="810">
+                    <Run Text="Rol: " FontWeight="Bold"/>
+                    <Run Text="{Binding RoleName, Mode=OneWay}"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,18" Width="814">
+                    <Run Text="Estado: " FontWeight="Bold"/>
+                    <Run Text="{Binding Status, Mode=OneWay}" Foreground="Green"/>
+                </TextBlock>
+
+                <TextBlock FontSize="18" Margin="0,0,0,35" Width="817">
+                    <Run Text="Contraseña: " FontWeight="Bold"/>
+                    <Run Text="{Binding PasswordDisplay, Mode=OneWay}"/>
+                </TextBlock>
+                <Button Content="Volver"
+                        Width="270"
+                        Height="45"
+                        FontSize="18"
+                        Background="White"
+                        Foreground="Black"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Command="{Binding BackCommand}"/>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</UserControl>
