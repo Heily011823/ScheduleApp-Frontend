@@ -3,10 +3,213 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ScheduleApp.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+    <UserControl.Resources>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#D9D9D9"/>
+            <Setter Property="Foreground" Value="#4A4A4A"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="#A6A6A6"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Background="White">
+
+        <!-- TÍTULO -->
+        <TextBlock Text="Materias"
+                   FontFamily="Segoe UI"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="Black"
+                   Margin="25,25,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+
+        <!-- 3 PUNTOS -->
+        <Button Content="⋮"
+                Width="35"
+                Height="35"
+                FontSize="26"
+                Background="Transparent"
+                BorderThickness="0"
+                Foreground="#1B2A41"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,20,25,0"
+                Cursor="Hand"/>
+
+        <!-- TABLA -->
+        <DataGrid x:Name="SubjectsDataGrid"
+                  ItemsSource="{Binding Subjects}"
+                  Margin="25,95,25,90"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  HeadersVisibility="Column"
+                  RowHeight="55"
+                  FontSize="12"
+                  Background="White"
+                  BorderBrush="#A6A6A6"
+                  BorderThickness="1"
+                  GridLinesVisibility="All"
+                  HorizontalGridLinesBrush="#A6A6A6"
+                  VerticalGridLinesBrush="#A6A6A6">
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="55"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Código"
+                                    Width="*"
+                                    Binding="{Binding Code}"/>
+
+                <DataGridTextColumn Header="Nombre"
+                                    Width="1.5*"
+                                    Binding="{Binding Name}"/>
+
+                <DataGridTextColumn Header="Semestre"
+                                    Width="*"
+                                    Binding="{Binding Semester}"/>
+
+                <DataGridTextColumn Header="Créditos"
+                                    Width="*"
+                                    Binding="{Binding Credits}"/>
+
+                <DataGridTemplateColumn Header="Estado"
+                                        Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Background="#2E7D32">
+                                <TextBlock Text="{Binding Status}"
+                                           Foreground="White"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Horas semanales"
+                                    Width="*"
+                                    Binding="{Binding WeeklyHours}"/>
+
+                <DataGridTemplateColumn Header="Acciones"
+                                        Width="1.2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+
+                                <Button Width="30"
+                                        Height="30"
+                                        Margin="3"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#2F6FED"
+                                        FontSize="16"
+                                        Cursor="Hand"
+                                        Content="✎"
+                                        ToolTip="Editar materia"/>
+
+                                <Button Width="30"
+                                        Height="30"
+                                        Margin="3"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#E53935"
+                                        FontSize="16"
+                                        Cursor="Hand"
+                                        Content="🗑"
+                                        ToolTip="Eliminar materia"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- PAGINACIÓN -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="25,0,0,28">
+
+            <TextBlock Text="≪"
+                       FontSize="22"
+                       VerticalAlignment="Center"
+                       Margin="0,0,15,0"/>
+
+            <Border Width="35"
+                    Height="30"
+                    Background="#1B2A41">
+
+                <TextBlock Text="1"
+                           Foreground="White"
+                           FontSize="16"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Border>
+
+            <TextBlock Text="≫"
+                       FontSize="22"
+                       VerticalAlignment="Center"
+                       Margin="15,0,0,0"/>
+
+        </StackPanel>
+
+        <!-- NUEVA MATERIA -->
+        <Button Content="+ Nueva materia"
+                Width="160"
+                Height="40"
+                FontSize="14"
+                FontWeight="Bold"
+                Background="#1B2A41"
+                Foreground="White"
+                BorderBrush="#C6922E"
+                BorderThickness="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,25,25"
+                Cursor="Hand">
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+
     </Grid>
 </UserControl>
