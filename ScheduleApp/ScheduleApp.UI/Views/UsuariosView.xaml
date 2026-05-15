@@ -57,8 +57,8 @@
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Visibility" Value="Visible"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=ComboBox}}">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            <DataTrigger Binding="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=ComboBox}}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -112,7 +112,6 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Margin="25,95,0,0">
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
@@ -186,25 +185,14 @@
             </DataGrid.RowStyle>
 
             <DataGrid.Columns>
-
-                <DataGridTextColumn Header="Usuario"
-                                    Width="*"
-                                    Binding="{Binding Username}"/>
-
-                <DataGridTextColumn Header="Nombre Completo"
-                                    Width="2*"
-                                    Binding="{Binding FullName}"/>
-
-                <DataGridTextColumn Header="Correo"
-                                    Width="2*"
-                                    Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Usuario" Width="*" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="Nombre Completo" Width="2*" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="Correo" Width="2*" Binding="{Binding Email}"/>
 
                 <DataGridTemplateColumn Header="Estado" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Border HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Margin="0">
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
                                 <Border.Style>
                                     <Style TargetType="Border">
                                         <Setter Property="Background" Value="#E53935"/>
@@ -218,7 +206,6 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-
                                 <TextBlock Text="{Binding Status}"
                                            Foreground="White"
                                            FontWeight="Bold"
@@ -230,66 +217,32 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Rol"
-                                    Width="*"
-                                    Binding="{Binding Role}"/>
+                <DataGridTextColumn Header="Rol" Width="*" Binding="{Binding Role}"/>
 
                 <DataGridTemplateColumn Header="Acciones" Width="1.5*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid Height="55" Background="White">
-                                <Border BorderBrush="#A6A6A6"
-                                        BorderThickness="0.5"
-                                        Margin="-1">
-                                    <StackPanel Orientation="Horizontal"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center">
+                                <Border BorderBrush="#A6A6A6" BorderThickness="0.5" Margin="-1">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                                        <Button Width="32"
-                                                Height="32"
-                                                Margin="2"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                FontSize="16"
-                                                Cursor="Hand"
-                                                ToolTip="Ver usuario"
-                                                Content="👁"
+                                        <Button Width="32" Height="32" Margin="2" Background="Transparent" BorderThickness="0" FontSize="16" Cursor="Hand" ToolTip="Ver usuario" Content="👁"
                                                 Command="{Binding DataContext.ShowUserDetaillCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
 
-                                        <Button Width="32"
-                                                Height="32"
-                                                Margin="2"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                FontSize="16"
-                                                Cursor="Hand"
-                                                ToolTip="Editar usuario"
-                                                Foreground="#2F6FED"
-                                                Content="✎"
+                                        <Button Width="32" Height="32" Margin="2" Background="Transparent" BorderThickness="0" FontSize="16" Cursor="Hand" ToolTip="Editar usuario" Foreground="#2F6FED" Content="✎"
                                                 Command="{Binding DataContext.ShowEditUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
 
-                                        <Button Width="32"
-                                                Height="32"
-                                                Margin="2"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                FontSize="16"
-                                                Cursor="Hand"
-                                                ToolTip="Eliminar usuario"
-                                                Foreground="#E53935"
-                                                Content="🗑"
+                                        <Button Width="32" Height="32" Margin="2" Background="Transparent" BorderThickness="0" FontSize="16" Cursor="Hand" ToolTip="Eliminar usuario" Foreground="#E53935" Content="🗑"
                                                 Command="{Binding DataContext.ShowDeleteUserCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
-
                                     </StackPanel>
                                 </Border>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
 
@@ -311,7 +264,6 @@
                     Height="35"
                     Background="#1B2A41"
                     Margin="10,0,10,0">
-
                 <TextBlock Text="{Binding CurrentPage}"
                            Foreground="White"
                            FontSize="18"
@@ -345,7 +297,6 @@
                 VerticalAlignment="Bottom"
                 Margin="0,0,25,25"
                 Command="{Binding DataContext.ShowUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}">
-
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -355,7 +306,6 @@
                     </Border>
                 </ControlTemplate>
             </Button.Template>
-
         </Button>
 
     </Grid>
