@@ -9,8 +9,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Assets\Aula.png" />
+		<None Remove="Assets\Auladashboard.png" />
+		<None Remove="Assets\Cordinadordashboard.png" />
+		<None Remove="Assets\Docentedashboard.png" />
+		<None Remove="Assets\Horariodashboard.png" />
 		<None Remove="Assets\ImagenFondo.jpeg" />
 		<None Remove="Assets\Logo.jpeg" />
+		<None Remove="Assets\MateriasDashboard.png" />
 		<None Remove="Assets\PanelIzquierdoLogin.png" />
 
 		<None Remove="Assets\Administrador.png" />
@@ -22,6 +28,7 @@
 		<None Remove="Assets\Docentes.png" />
 		<None Remove="Assets\Aulas.png" />
 		<None Remove="Assets\Horarios.png" />
+		<None Remove="Assets\Programasdashboard.png" />
 		<None Remove="Assets\Restricciones.png" />
 		<None Remove="Assets\Usuarios.png" />
 		<None Remove="Assets\ManualUsuario.png" />
@@ -29,8 +36,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Assets\Auladashboard.png" />
+		<Resource Include="Assets\Cordinadordashboard.png" />
+		<Resource Include="Assets\Docentedashboard.png" />
+		<Resource Include="Assets\Horariodashboard.png" />
 		<Resource Include="Assets\ImagenFondo.jpeg" />
 		<Resource Include="Assets\Logo.jpeg" />
+		<Resource Include="Assets\MateriasDashboard.png" />
 		<Resource Include="Assets\PanelIzquierdoLogin.png" />
 
 		<Resource Include="Assets\Administrador.png" />
@@ -38,10 +50,10 @@
 		<Resource Include="Assets\CerrarSesion.png" />
 		<Resource Include="Assets\Inicio.png" />
 		<Resource Include="Assets\Materias.png" />
-		<Resource Include="Assets\Programas.png" />
 		<Resource Include="Assets\Docentes.png" />
 		<Resource Include="Assets\Aulas.png" />
 		<Resource Include="Assets\Horarios.png" />
+		<Resource Include="Assets\Programasdashboard.png" />
 		<Resource Include="Assets\Restricciones.png" />
 		<Resource Include="Assets\Usuarios.png" />
 		<Resource Include="Assets\ManualUsuario.png" />
