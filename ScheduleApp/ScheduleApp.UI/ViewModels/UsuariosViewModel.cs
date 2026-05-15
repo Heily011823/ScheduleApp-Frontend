@@ -1,42 +1,59 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using ScheduleApp.UI.Models;
 using ScheduleApp.UI.Services;
-
 
 namespace ScheduleApp.UI.ViewModels;
 
 public class UsuariosViewModel : BaseViewModel
 {
     private readonly UserApiService _userApiService = new();
-    
+
+    private readonly List<UserModel> _todosLosUsuarios = new();
+
+    private int _currentPage = 1;
+    private int _totalPages = 1;
+
 
     public ObservableCollection<UserModel> Usuarios { get; set; } = new();
 
-    private UserModel _usuario = new()
-    {
-        IsActive = true
-    };
+    public ObservableCollection<UserModel> UsuariosPaginados { get; set; } = new();
 
-    public UserModel Usuario
+    public int PageSize { get; set; } = 4;
+
+    public int CurrentPage
     {
-        get => _usuario;
+        get => _currentPage;
         set
         {
-            _usuario = value;
+            _currentPage = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int TotalPages
+    {
+        get => _totalPages;
+        set
+        {
+            _totalPages = value;
             OnPropertyChanged();
         }
     }
 
     public ICommand CargarUsuariosCommand { get; }
-    public ICommand GuardarUsuarioCommand { get; }
+    public ICommand NextPageCommand { get; }
+    public ICommand PreviousPageCommand { get; }
 
     public UsuariosViewModel()
     {
         CargarUsuariosCommand = new RelayCommand(async _ => await CargarUsuariosAsync());
-        GuardarUsuarioCommand = new RelayCommand(async _ => await GuardarUsuarioAsync());
+        NextPageCommand = new RelayCommand(_ => GoToNextPage());
+        PreviousPageCommand = new RelayCommand(_ => GoToPreviousPage());
 
         _ = CargarUsuariosAsync();
     }
@@ -46,13 +63,23 @@ public class UsuariosViewModel : BaseViewModel
         try
         {
             Usuarios.Clear();
+            UsuariosPaginados.Clear();
+            _todosLosUsuarios.Clear();
 
             var usuariosApi = await _userApiService.GetUsersAsync();
 
             foreach (var usuario in usuariosApi)
             {
                 Usuarios.Add(usuario);
+                _todosLosUsuarios.Add(usuario);
             }
+
+            CurrentPage = 1;
+            TotalPages = Math.Max(
+                1,
+                (int)Math.Ceiling((double)_todosLosUsuarios.Count / PageSize));
+
+            LoadCurrentPage();
         }
         catch (Exception ex)
         {
@@ -60,31 +87,41 @@ public class UsuariosViewModel : BaseViewModel
         }
     }
 
-    private async Task GuardarUsuarioAsync()
+    private void LoadCurrentPage()
     {
-        try
+        UsuariosPaginados.Clear();
+
+        var usuariosPagina = _todosLosUsuarios
+            .Skip((CurrentPage - 1) * PageSize)
+            .Take(PageSize)
+            .ToList();
+
+        foreach (var usuario in usuariosPagina)
         {
-            var creado = await _userApiService.CreateUserAsync(Usuario);
-
-            if (creado)
-            {
-                MessageBox.Show("Usuario creado correctamente.");
-
-                Usuario = new UserModel
-                {
-                    IsActive = true
-                };
-
-                await CargarUsuariosAsync();
-            }
-            else
-            {
-                MessageBox.Show("No se pudo crear el usuario.");
-            }
+            UsuariosPaginados.Add(usuario);
         }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Error guardando usuario: {ex.Message}");
-        }
+
+        OnPropertyChanged(nameof(Usuarios));
+        OnPropertyChanged(nameof(UsuariosPaginados));
+        OnPropertyChanged(nameof(CurrentPage));
+        OnPropertyChanged(nameof(TotalPages));
+    }
+
+    private void GoToNextPage()
+    {
+        if (CurrentPage >= TotalPages)
+            return;
+
+        CurrentPage++;
+        LoadCurrentPage();
+    }
+
+    private void GoToPreviousPage()
+    {
+        if (CurrentPage <= 1)
+            return;
+
+        CurrentPage--;
+        LoadCurrentPage();
     }
 }
