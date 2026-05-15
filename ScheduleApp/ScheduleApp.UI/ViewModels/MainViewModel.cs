@@ -1,10 +1,7 @@
 ﻿using ScheduleApp.UI.Models;
 using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
-
 using System.Windows;
-
-
 using System.Windows.Input;
 
 namespace ScheduleApp.UI.ViewModels
@@ -90,21 +87,38 @@ namespace ScheduleApp.UI.ViewModels
         public ICommand CancelLogoutCommand { get; set; }
         public ICommand ConfirmLogoutCommand { get; set; }
         public ICommand ShowEditUserFormCommand { get; set; }
-
         public ICommand ShowUserDetaillCommand { get; set; }
 
         public MainViewModel(string rolUsuario)
         {
             RolUsuario = rolUsuario;
 
-            // INICIO
+            // INICIO CORREGIDO: Ahora sí le inyecta el rol al Dashboard
             ShowDashboardCommand = new RelayCommand(o =>
             {
-                CurrentView = new DashboardView();
+                var dashboardVM = new DashboardViewModel();
+                dashboardVM.UserRole = this.RolUsuario;
+
+                // Definimos los mensajes basados en el rol real
+                if (this.RolUsuario == "Coordinador")
+                {
+                    dashboardVM.WelcomeMessage = "¡Bienvenido, Coordinador!";
+                    dashboardVM.GestionMessage = "Gestiona los horarios de manera fácil y eficiente.";
+                }
+                else
+                {
+                    dashboardVM.WelcomeMessage = "¡Bienvenido, Administrador!";
+                    dashboardVM.GestionMessage = "Gestiona los usuarios y consulta la documentación del sistema.";
+                }
+
+                var dashboardView = new DashboardView();
+                dashboardView.DataContext = dashboardVM; // Enlazamos los datos corregidos
+
+                CurrentView = dashboardView;
                 ModuloActivo = "Inicio";
             });
 
-            //EDITAR USUARIO
+            // EDITAR USUARIO
             ShowEditUserFormCommand = new RelayCommand(o =>
             {
                 if (o is not UserModel selectedUser)
@@ -134,30 +148,31 @@ namespace ScheduleApp.UI.ViewModels
                 ModuloActivo = "Usuarios";
             });
 
-            //AGREGAR USUARIO
+            // AGREGAR USUARIO
             ShowUserFormCommand = new RelayCommand(o =>
-             {
-                 var userFormViewModel = new UserFormViewModel();
+            {
+                var userFormViewModel = new UserFormViewModel();
 
-                 userFormViewModel.OnCancel += () =>
-                 {
-                     CurrentView = new UsuariosView();
-                     ModuloActivo = "Usuarios";
-                 };
+                userFormViewModel.OnCancel += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
 
-                 userFormViewModel.OnSaveSuccess += () =>
-                 {
-                     CurrentView = new UsuariosView();
-                     ModuloActivo = "Usuarios";
-                 };
+                userFormViewModel.OnSaveSuccess += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
 
-                 var userFormView = new UserFormView();
-                 userFormView.DataContext = userFormViewModel;
+                var userFormView = new UserFormView();
+                userFormView.DataContext = userFormViewModel;
 
-                 CurrentView = userFormView;
-                 ModuloActivo = "Usuarios";
-             });
-            //  ELIMINAR USUARIO
+                CurrentView = userFormView;
+                ModuloActivo = "Usuarios";
+            });
+
+            // ELIMINAR USUARIO
             ShowDeleteUserCommand = new RelayCommand(o =>
             {
                 if (o is not UserModel selectedUser)
@@ -186,7 +201,8 @@ namespace ScheduleApp.UI.ViewModels
                 CurrentView = deleteUserView;
                 ModuloActivo = "Usuarios";
             });
-            //VER INFORMACIÓN DE USUARIO 
+
+            // VER INFORMACIÓN DE USUARIO 
             ShowUserDetaillCommand = new RelayCommand(o =>
             {
                 if (o is not UserModel selectedUser)
@@ -194,8 +210,7 @@ namespace ScheduleApp.UI.ViewModels
                     return;
                 }
 
-                var detaillViewModel =
-                    new UserDetailViewModel(selectedUser);
+                var detaillViewModel = new UserDetailViewModel(selectedUser);
 
                 detaillViewModel.OnBack += () =>
                 {
@@ -272,6 +287,7 @@ namespace ScheduleApp.UI.ViewModels
                 CurrentView = new InformacionView();
                 ModuloActivo = "Manual";
             });
+
             // LOGOUT
             ShowLogoutCommand = new RelayCommand(o =>
             {
@@ -281,8 +297,8 @@ namespace ScheduleApp.UI.ViewModels
 
             CancelLogoutCommand = new RelayCommand(o =>
             {
-                CurrentView = new DashboardView();
-                ModuloActivo = "Inicio";
+                // Al cancelar, volvemos a invocar el comando de inicio corregido
+                ShowDashboardCommand.Execute(null);
             });
 
             ConfirmLogoutCommand = new RelayCommand(o =>
@@ -313,12 +329,8 @@ namespace ScheduleApp.UI.ViewModels
                 }
             });
 
-            // VISTA INICIAL
-            CurrentView = new DashboardView();
-            ModuloActivo = "Inicio";
-
-            
-
+          
+            ShowDashboardCommand.Execute(null);
         }
     }
 }
