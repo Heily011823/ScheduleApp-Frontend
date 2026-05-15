@@ -16,11 +16,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
+
                             <ToggleButton Background="White"
                                           BorderBrush="#A6A6A6"
                                           BorderThickness="1"
                                           HorizontalContentAlignment="Stretch"
                                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -37,17 +39,22 @@
                                                VerticalAlignment="Center"
                                                Foreground="Gray"/>
                                 </Grid>
+
                             </ToggleButton>
 
                             <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
                                    Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
                                    AllowsTransparency="True">
+
                                 <Border Background="White"
                                         BorderBrush="#A6A6A6"
                                         BorderThickness="1">
+
                                     <ItemsPresenter/>
+
                                 </Border>
+
                             </Popup>
 
                             <TextBlock Text="{TemplateBinding Tag}"
@@ -55,17 +62,22 @@
                                        Margin="12,0,0,0"
                                        VerticalAlignment="Center"
                                        IsHitTestVisible="False">
+
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Visibility" Value="Visible"/>
+
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=ComboBox}}">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
                                             </DataTrigger>
                                         </Style.Triggers>
+
                                     </Style>
                                 </TextBlock.Style>
+
                             </TextBlock>
+
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -94,12 +106,14 @@
 
     <Grid Background="White">
 
+        <!-- Fondo -->
         <Image Source="pack://application:,,,/Assets/ImagenFondo.jpeg"
                Opacity="0.12"
                Stretch="Uniform"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
 
+        <!-- Título -->
         <TextBlock Text="Usuarios"
                    FontFamily="Segoe UI"
                    FontSize="34"
@@ -107,6 +121,7 @@
                    Foreground="Black"
                    Margin="25,25,0,25"/>
 
+        <!-- Buscador -->
         <Border Width="465"
                 Height="45"
                 BorderBrush="Black"
@@ -116,6 +131,7 @@
                 Margin="25,95,0,0">
 
             <Grid>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="*"/>
@@ -131,9 +147,12 @@
                          FontSize="18"
                          VerticalContentAlignment="Center"
                          Text="Buscar usuario"/>
+
             </Grid>
+
         </Border>
 
+        <!-- Filtros -->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -145,8 +164,10 @@
                       Style="{StaticResource ComboBoxPlaceholderStyle}"
                       Tag="Estado"
                       Margin="0,0,25,0">
+
                 <ComboBoxItem Content="Activo"/>
                 <ComboBoxItem Content="Inactivo"/>
+
             </ComboBox>
 
             <ComboBox Width="220"
@@ -154,12 +175,15 @@
                       FontSize="16"
                       Style="{StaticResource ComboBoxPlaceholderStyle}"
                       Tag="Rol">
+
                 <ComboBoxItem Content="Administrador"/>
                 <ComboBoxItem Content="Coordinador"/>
+
             </ComboBox>
 
         </StackPanel>
 
+        <!-- Tabla -->
         <DataGrid x:Name="UsersDataGrid"
                   ItemsSource="{Binding UsuariosPaginados}"
                   Margin="20,240,20,120"
@@ -202,22 +226,30 @@
                                     Binding="{Binding Email}"/>
 
                 <DataGridTemplateColumn Header="Estado" Width="*">
+
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
+
                             <Border HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Margin="0">
+                                    VerticalAlignment="Stretch">
+
                                 <Border.Style>
                                     <Style TargetType="Border">
+
                                         <Setter Property="Background" Value="#E53935"/>
+
                                         <Style.Triggers>
+
                                             <DataTrigger Binding="{Binding Status}" Value="Activo">
                                                 <Setter Property="Background" Value="#2E7D32"/>
                                             </DataTrigger>
+
                                             <DataTrigger Binding="{Binding Status}" Value="Inactivo">
                                                 <Setter Property="Background" Value="#E53935"/>
                                             </DataTrigger>
+
                                         </Style.Triggers>
+
                                     </Style>
                                 </Border.Style>
 
@@ -225,28 +257,38 @@
                                            Foreground="White"
                                            FontWeight="Bold"
                                            HorizontalAlignment="Center"
-                                           TextAlignment="Center"
                                            VerticalAlignment="Center"/>
+
                             </Border>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="Rol"
                                     Width="*"
                                     Binding="{Binding Role}"/>
 
-                <DataGridTemplateColumn Header="Acciones" Width="1.5*">
+                <!-- Acciones -->
+                <DataGridTemplateColumn Header="Acciones"
+                                        Width="1.5*">
+
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Height="55" Background="White">
+
+                            <Grid Height="55"
+                                  Background="White">
+
                                 <Border BorderBrush="#A6A6A6"
                                         BorderThickness="0.5"
                                         Margin="-1">
+
                                     <StackPanel Orientation="Horizontal"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
 
+                                        <!-- Ver -->
                                         <Button Width="32"
                                                 Height="32"
                                                 Margin="2"
@@ -256,9 +298,10 @@
                                                 Cursor="Hand"
                                                 ToolTip="Ver usuario"
                                                 Content="👁"
-                                                Command="{Binding DataContext.ShowUserDetaillCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                Command="{Binding DataContext.ShowUserDetailCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
 
+                                        <!-- Editar -->
                                         <Button Width="32"
                                                 Height="32"
                                                 Margin="2"
@@ -272,6 +315,7 @@
                                                 Command="{Binding DataContext.ShowEditUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
 
+                                        <!-- Eliminar -->
                                         <Button Width="32"
                                                 Height="32"
                                                 Margin="2"
@@ -286,15 +330,21 @@
                                                 CommandParameter="{Binding}"/>
 
                                     </StackPanel>
+
                                 </Border>
+
                             </Grid>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
+
         </DataGrid>
 
+        <!-- Paginación -->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
@@ -319,6 +369,7 @@
                            FontSize="18"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"/>
+
             </Border>
 
             <Button Content="≫"
@@ -334,8 +385,10 @@
                        FontSize="16"
                        VerticalAlignment="Center"
                        Margin="8,0,0,0"/>
+
         </StackPanel>
 
+        <!-- Nuevo usuario -->
         <Button Content="+ Nuevo usuario"
                 Width="220"
                 Height="50"
@@ -348,251 +401,24 @@
                 Margin="0,0,25,25"
                 Command="{Binding DataContext.ShowUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}">
 
-<<<<<<< HEAD
-                    <ComboBox Width="220"
-                              Height="45"
-                              FontSize="16"
-                              Style="{StaticResource ComboBoxPlaceholderStyle}"
-                              Tag="Estado">
-
-                        <ComboBoxItem Content="Activo"/>
-                        <ComboBoxItem Content="Inactivo"/>
-
-                    </ComboBox>
-
-                </StackPanel>
-
-                <!-- ROL -->
-                <StackPanel Orientation="Vertical">
-
-                    <ComboBox Width="220"
-                              Height="45"
-                              FontSize="16"
-                              Style="{StaticResource ComboBoxPlaceholderStyle}"
-                              Tag="Rol">
-
-                        <ComboBoxItem Content="Administrador"/>
-                        <ComboBoxItem Content="Coordinador"/>
-
-                    </ComboBox>
-
-                </StackPanel>
-
-            </StackPanel>
-
-
-            <!-- TABLA -->
-           
-            <DataGrid x:Name="UsersDataGrid"
-          ItemsSource="{Binding Usuarios}"
-          Margin="20,240,20,120"
-          AutoGenerateColumns="False"
-          IsReadOnly="True"
-          CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          HeadersVisibility="Column"
-          RowHeight="55"
-          FontSize="14"
-          Background="White"
-          BorderBrush="#A6A6A6"
-          BorderThickness="1"
-          GridLinesVisibility="All"
-          HorizontalGridLinesBrush="#A6A6A6"
-          VerticalGridLinesBrush="#A6A6A6"
-          HorizontalScrollBarVisibility="Disabled"
-          HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center">
-
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Height" Value="55"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.RowStyle>
-
-                <DataGrid.Columns>
-
-                    <DataGridTextColumn Header="Usuario"
-                            Width="*"
-                            Binding="{Binding Username}"/>
-
-                    <DataGridTextColumn Header="Nombre Completo"
-                            Width="2*"
-                            Binding="{Binding FullName}"/>
-
-                    <DataGridTextColumn Header="Correo"
-                            Width="2*"
-                            Binding="{Binding Email}"/>
-
-                    <DataGridTemplateColumn Header="Estado"
-                                Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Border HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Margin="0">
-
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Setter Property="Background" Value="#E53935"/>
-
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Status}" Value="Activo">
-                                                    <Setter Property="Background" Value="#2E7D32"/>
-                                                </DataTrigger>
-
-                                                <DataTrigger Binding="{Binding Status}" Value="Inactivo">
-                                                    <Setter Property="Background" Value="#E53935"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-
-                                    <TextBlock Text="{Binding Status}"
-                                   Foreground="White"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   TextAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                                </Border>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Rol"
-                            Width="*"
-                            Binding="{Binding RoleName}"/>
-
-                    <DataGridTemplateColumn Header="Acciones"
-                                Width="1.5*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Height="55"
-                          Background="White">
-
-                                    <Border BorderBrush="#A6A6A6"
-                                BorderThickness="0.5"
-                                Margin="-1">
-
-                                        <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-
-                                            <Button Width="32"
-                                        Height="32"
-                                        Margin="2"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Cursor="Hand"
-                                        ToolTip="Ver usuario"
-                                        Content="👁"/>
-
-                                            <Button Width="32"
-        Height="32"
-        Margin="2"
-        Background="Transparent"
-        BorderThickness="0"
-        FontSize="16"
-        Cursor="Hand"
-        ToolTip="Editar usuario"
-        Foreground="#2F6FED"
-        Content="✎"
-        Command="{Binding DataContext.ShowEditUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-        CommandParameter="{Binding}"/>
-                                            <Button Width="32"
-                                        Height="32"
-                                        Margin="2"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Cursor="Hand"
-                                        ToolTip="Eliminar usuario"
-                                        Foreground="#E53935"
-                                        Content="🗑"/>
-
-                                        </StackPanel>
-
-                                    </Border>
-
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!-- PAGINACIÓN -->
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom"
-                        Margin="25,0,0,28">
-
-                <TextBlock Text="≪"
-                           FontSize="24"
-                           VerticalAlignment="Center"
-                           Margin="0,0,15,0"/>
-
-                <Border Width="40"
-                        Height="35"
-                        Background="#1B2A41">
-
-                    <TextBlock Text="1"
-                               Foreground="White"
-                               FontSize="18"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
-
-                </Border>
-
-                <TextBlock Text="≫"
-                           FontSize="24"
-                           VerticalAlignment="Center"
-                           Margin="15,0,0,0"/>
-
-            </StackPanel>
-
-            <!-- NUEVO USUARIO -->
-            <Button Content="+ Nuevo usuario"
-        Width="220"
-        Height="50"
-        FontSize="18"
-        Background="#1B2A41"
-        Foreground="White"
-        BorderThickness="0"
-        HorizontalAlignment="Right"
-        VerticalAlignment="Bottom"
-        Margin="0,0,25,25"
-        Command="{Binding DataContext.ShowUserFormCommand, RelativeSource={RelativeSource AncestorType=Window}}">
-
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                    CornerRadius="12">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-
-            </Button>
-
-
-        </Grid>
-=======
             <Button.Template>
+
                 <ControlTemplate TargetType="Button">
+
                     <Border Background="{TemplateBinding Background}"
                             CornerRadius="12">
+
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"/>
+
                     </Border>
+
                 </ControlTemplate>
+
             </Button.Template>
+
         </Button>
->>>>>>> feature/19-login-ui
 
     </Grid>
+
 </UserControl>
