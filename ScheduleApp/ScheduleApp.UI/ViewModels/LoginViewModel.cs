@@ -8,7 +8,7 @@ namespace ScheduleApp.UI.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private readonly FakeAuthenticationService _authenticationService;
+        private readonly AuthApiService _authenticationService;
 
         private string _usuario = string.Empty;
         private string _contrasena = string.Empty;
@@ -19,7 +19,7 @@ namespace ScheduleApp.UI.ViewModels
 
         public LoginViewModel()
         {
-            _authenticationService = new FakeAuthenticationService();
+            _authenticationService = new AuthApiService();
             LoginCommand = new RelayCommand(ExecuteLogin);
         }
 
@@ -65,7 +65,7 @@ namespace ScheduleApp.UI.ViewModels
 
         public ICommand LoginCommand { get; }
 
-        private void ExecuteLogin(object? parameter)
+        private async void ExecuteLogin(object? parameter)
         {
             MensajeError = string.Empty;
 
@@ -82,11 +82,13 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            if (_authenticationService.Login(Usuario, Contrasena))
-            {
-               
-                RolUsuario = _authenticationService.Role;
+            var loginSuccess = await _authenticationService.LoginAsync(
+                Usuario.Trim(),
+                Contrasena.Trim());
 
+            if (loginSuccess)
+            {
+                RolUsuario = _authenticationService.Role;
                 OnLoginSuccess?.Invoke();
             }
             else
