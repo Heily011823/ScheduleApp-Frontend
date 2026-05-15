@@ -197,8 +197,6 @@ namespace ScheduleApp.UI.ViewModels
                 return;
             }
 
-            // En creación la contraseña es obligatoria.
-            // En edición solo se valida si el admin escribió una nueva contraseña.
             if (!IsEditMode || !string.IsNullOrWhiteSpace(Password))
             {
                 if (string.IsNullOrWhiteSpace(Password))

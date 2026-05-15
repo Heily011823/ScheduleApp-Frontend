@@ -84,12 +84,14 @@ namespace ScheduleApp.UI.ViewModels
         public ICommand ShowUsuariosCommand { get; set; }
         public ICommand ShowInformacionCommand { get; set; }
         public ICommand ShowManualCommand { get; set; }
-
+        public ICommand ShowDeleteUserCommand { get; set; }
         public ICommand ShowUserFormCommand { get; set; }
         public ICommand ShowLogoutCommand { get; set; }
         public ICommand CancelLogoutCommand { get; set; }
         public ICommand ConfirmLogoutCommand { get; set; }
         public ICommand ShowEditUserFormCommand { get; set; }
+
+        public ICommand ShowUserDetaillCommand { get; set; }
 
         public MainViewModel(string rolUsuario)
         {
@@ -155,6 +157,58 @@ namespace ScheduleApp.UI.ViewModels
                  CurrentView = userFormView;
                  ModuloActivo = "Usuarios";
              });
+            //  ELIMINAR USUARIO
+            ShowDeleteUserCommand = new RelayCommand(o =>
+            {
+                if (o is not UserModel selectedUser)
+                {
+                    MessageBox.Show("Debe seleccionar un usuario.");
+                    return;
+                }
+
+                var deleteUserViewModel = new DeleteUserViewModel(selectedUser);
+
+                deleteUserViewModel.OnCancel += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
+
+                deleteUserViewModel.OnDeleteSuccess += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
+
+                var deleteUserView = new DeleteUserView();
+                deleteUserView.DataContext = deleteUserViewModel;
+
+                CurrentView = deleteUserView;
+                ModuloActivo = "Usuarios";
+            });
+            //VER INFORMACIÓN DE USUARIO 
+            ShowUserDetaillCommand = new RelayCommand(o =>
+            {
+                if (o is not UserModel selectedUser)
+                {
+                    return;
+                }
+
+                var detaillViewModel =
+                    new UserDetailViewModel(selectedUser);
+
+                detaillViewModel.OnBack += () =>
+                {
+                    CurrentView = new UsuariosView();
+                    ModuloActivo = "Usuarios";
+                };
+
+                var detaillView = new UserDetailView();
+                detaillView.DataContext = detaillViewModel;
+
+                CurrentView = detaillView;
+                ModuloActivo = "Usuarios";
+            });
 
             // MATERIAS
             ShowMateriasCommand = new RelayCommand(o =>
