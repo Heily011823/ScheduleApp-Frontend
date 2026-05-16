@@ -86,21 +86,67 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="🔍" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBox Grid.Column="1" BorderThickness="0" FontSize="18" VerticalContentAlignment="Center" Text="Buscar usuario"/>
+                <Grid Grid.Column="1">
+
+                    <TextBox x:Name="SearchTextBox"
+                             BorderThickness="0"
+                             FontSize="18"
+                             VerticalContentAlignment="Center"
+                             Background="Transparent"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Buscar usuario"
+                               FontSize="18"
+                               Foreground="Gray"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False">
+
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+
+                                <Setter Property="Visibility" Value="Visible"/>
+
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding Text, ElementName=SearchTextBox}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Text, ElementName=SearchTextBox}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=SearchTextBox}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+                        </TextBlock.Style>
+
+                    </TextBlock>
+
+                </Grid>
             </Grid>
         </Border>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,165,0,0">
-            <ComboBox Width="220" Height="45" FontSize="16" Style="{StaticResource ComboBoxPlaceholderStyle}" Tag="Estado" Margin="0,0,25,0">
+            <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,25,0" SelectedIndex="0" SelectedValuePath="Content"
+                      SelectedValue="{Binding SelectedStatus, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Content="Estado"/>
                 <ComboBoxItem Content="Activo"/>
                 <ComboBoxItem Content="Inactivo"/>
             </ComboBox>
 
-            <ComboBox Width="220" Height="45" FontSize="16" Style="{StaticResource ComboBoxPlaceholderStyle}" Tag="Rol">
+            <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" SelectedIndex="0" SelectedValuePath="Content"
+                      SelectedValue="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem Content="Rol"/>
                 <ComboBoxItem Content="Administrador"/>
-                <ComboBoxItem Content="Coordinador"/>
-            </ComboBox>
-        </StackPanel>
+        <ComboBoxItem Content="Coordinador"/>
+    </ComboBox>
+ </StackPanel>
 
         <DataGrid x:Name="UsersDataGrid"
                   ItemsSource="{Binding UsuariosPaginados}"

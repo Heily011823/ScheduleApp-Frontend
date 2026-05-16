@@ -18,6 +18,9 @@ public class UsuariosViewModel : BaseViewModel
     private int _currentPage = 1;
     private int _totalPages = 1;
 
+    private string _searchText = string.Empty;
+    private string _selectedStatus = string.Empty;
+    private string _selectedRole = string.Empty;
 
     public ObservableCollection<UserModel> Usuarios { get; set; } = new();
 
@@ -51,6 +54,9 @@ public class UsuariosViewModel : BaseViewModel
 
     public UsuariosViewModel()
     {
+        SelectedStatus = "Estado";
+        SelectedRole = "Rol";
+
         CargarUsuariosCommand = new RelayCommand(async _ => await CargarUsuariosAsync());
         NextPageCommand = new RelayCommand(_ => GoToNextPage());
         PreviousPageCommand = new RelayCommand(_ => GoToPreviousPage());
@@ -123,5 +129,79 @@ public class UsuariosViewModel : BaseViewModel
 
         CurrentPage--;
         LoadCurrentPage();
+    }
+
+    private void FilterUsers()
+    {
+        var filteredUsers = _todosLosUsuarios.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            filteredUsers = filteredUsers.Where(u =>
+                u.FullName.Contains(SearchText,
+                    StringComparison.OrdinalIgnoreCase)
+                ||
+                u.Username.Contains(SearchText,
+                    StringComparison.OrdinalIgnoreCase)
+                ||
+                u.Email.Contains(SearchText,
+                    StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedStatus) && SelectedStatus != "Estado")
+        {
+            filteredUsers = filteredUsers.Where(u =>
+                u.Status.Equals(SelectedStatus,
+                    StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedRole) && SelectedRole != "Rol")
+        {
+            filteredUsers = filteredUsers.Where(u =>
+                u.Role.Equals(SelectedRole,
+                    StringComparison.OrdinalIgnoreCase));
+        }
+
+        UsuariosPaginados.Clear();
+
+        foreach (var usuario in filteredUsers)
+        {
+            UsuariosPaginados.Add(usuario);
+        }
+
+        OnPropertyChanged(nameof(UsuariosPaginados));
+    }
+
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+            OnPropertyChanged();
+            FilterUsers();
+        }
+    }
+
+    public string SelectedStatus
+    {
+        get => _selectedStatus;
+        set
+        {
+            _selectedStatus = value;
+            OnPropertyChanged();
+            FilterUsers();
+        }
+    }
+
+    public string SelectedRole
+    {
+        get => _selectedRole;
+        set
+        {
+            _selectedRole = value;
+            OnPropertyChanged();
+            FilterUsers();
+        }
     }
 }

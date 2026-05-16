@@ -12,19 +12,19 @@ namespace ScheduleApp.UI
             var loginViewModel = new LoginViewModel();
             var loginWindow = new LoginWindow();
 
-            loginWindow.DataContext = loginViewModel;
+            //loginWindow.DataContext = loginViewModel;
 
-            loginViewModel.OnLoginSuccess += () =>
+            //loginViewModel.OnLoginSuccess += () =>
             {
-                string rolUsuario = loginViewModel.RolUsuario;
+                //string rolUsuario = loginViewModel.RolUsuario;
 
-                MainWindow mainWindow = new MainWindow(rolUsuario);
+                MainWindow mainWindow = new MainWindow("Administrador");
                 mainWindow.Show();
 
-                loginWindow.Close();
+                //loginWindow.Close();
             };
 
-            loginWindow.Show();
+            //loginWindow.Show();
         }
     }
 }
