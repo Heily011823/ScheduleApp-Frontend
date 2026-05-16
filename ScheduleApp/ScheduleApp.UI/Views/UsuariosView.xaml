@@ -144,9 +144,9 @@
                       SelectedValue="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem Content="Rol"/>
                 <ComboBoxItem Content="Administrador"/>
-        <ComboBoxItem Content="Coordinador"/>
-    </ComboBox>
- </StackPanel>
+                <ComboBoxItem Content="Coordinador"/>
+            </ComboBox>
+        </StackPanel>
 
         <DataGrid x:Name="UsersDataGrid"
                   ItemsSource="{Binding UsuariosPaginados}"
