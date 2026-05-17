@@ -22,5 +22,17 @@ namespace ScheduleApp.UI.Views
         {
             InitializeComponent();
         }
+
+        private void NuevoDocente_Click(object sender, RoutedEventArgs e)
+        {
+            var formulario = new TeacherFormView();
+
+            var parent = this.Parent as ContentControl;
+
+            if (parent != null)
+            {
+                parent.Content = formulario;
+            }
+        }
     }
 }

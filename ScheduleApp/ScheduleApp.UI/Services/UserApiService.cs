@@ -21,8 +21,10 @@ public class UserApiService
 
     public async Task<List<UserModel>> GetUsersAsync()
     {
-        return await _httpClient.GetFromJsonAsync<List<UserModel>>("users")
-               ?? new List<UserModel>();
+        var response =
+            await _httpClient.GetFromJsonAsync<ApiResponse>("users");
+
+        return response?.Items ?? new List<UserModel>();
     }
 
     public async Task<bool> CreateUserAsync(UserModel user)
@@ -41,5 +43,10 @@ public class UserApiService
     {
         var response = await _httpClient.DeleteAsync($"users/{id}");
         return response.IsSuccessStatusCode;
+    }
+
+    public class ApiResponse
+    {
+        public List<UserModel> Items { get; set; } = new();
     }
 }

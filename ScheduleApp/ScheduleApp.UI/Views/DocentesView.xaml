@@ -625,6 +625,7 @@
 
         <!-- BOTON -->
         <Button Content="+ Nuevo docente"
+                Click="NuevoDocente_Click"
                 Width="220"
                 Height="50"
                 FontSize="18"
@@ -633,17 +634,57 @@
                 BorderThickness="0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Margin="0,0,25,25">
+                Margin="0,0,25,25"
+                Cursor="Hand">
+
+            <Button.Style>
+
+                <Style TargetType="Button">
+
+                    <Setter Property="RenderTransformOrigin"
+                    Value="0.5,0.5"/>
+
+                    <Setter Property="RenderTransform">
+
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1"
+                                    ScaleY="1"/>
+                        </Setter.Value>
+
+                    </Setter>
+
+                    <Style.Triggers>
+
+                        <!-- PRESIONADO -->
+                        <Trigger Property="IsPressed"
+                         Value="True">
+
+                            <Setter Property="RenderTransform">
+
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.96"
+                                            ScaleY="0.96"/>
+                                </Setter.Value>
+
+                            </Setter>
+
+                        </Trigger>
+
+                    </Style.Triggers>
+
+                </Style>
+
+            </Button.Style>
 
             <Button.Template>
 
                 <ControlTemplate TargetType="Button">
 
                     <Border Background="{TemplateBinding Background}"
-                            CornerRadius="12">
+                    CornerRadius="12">
 
                         <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                                  VerticalAlignment="Center"/>
 
                     </Border>
 
