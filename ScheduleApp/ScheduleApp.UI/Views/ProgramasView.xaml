@@ -26,43 +26,13 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 
-                <Button x:Name="BtnExportar"
-                        Width="160" Height="40"
+                <Button x:Name="BtnOpciones"
+                        Width="40" Height="40"
                         Background="#F5F5F5"
                         BorderBrush="#A6A6A6"
                         BorderThickness="1.5"
                         Cursor="Hand"
-                        Margin="0,0,10,0"
-                        Click="BtnExportar_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="6">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="📤" FontSize="14" VerticalAlignment="Center" Margin="0,0,6,0"/>
-                                    <TextBlock Text="Exportar" FontSize="15" FontWeight="SemiBold" Foreground="#333333" VerticalAlignment="Center"/>
-                                    <TextBlock Text=" ›" FontSize="16" Foreground="#333333" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-
-                    <Button.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="📄  PDF"
-                                      FontSize="15"
-                                      Command="{Binding ExportPdfCommand}"/>
-                        </ContextMenu>
-                    </Button.ContextMenu>
-                </Button>
-
-                <Button Width="40" Height="40"
-                        Background="#F5F5F5"
-                        BorderBrush="#A6A6A6"
-                        BorderThickness="1.5"
-                        Cursor="Hand">
+                        Click="BtnOpciones_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
@@ -74,6 +44,16 @@
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
+
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="📤  Exportar" FontSize="15">
+                                <MenuItem Header="📄  PDF"
+                                          FontSize="15"
+                                          Command="{Binding ExportPdfCommand}"/>
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
                 </Button>
 
             </StackPanel>

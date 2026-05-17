@@ -13,13 +13,13 @@ namespace ScheduleApp.UI.Views
             InitializeComponent();
         }
 
-        private void BtnExportar_Click(object sender, RoutedEventArgs e)
+     
+        private void BtnOpciones_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (BtnExportar.ContextMenu != null)
+            if (BtnOpciones.ContextMenu != null)
             {
-                BtnExportar.ContextMenu.PlacementTarget = BtnExportar;
-                BtnExportar.ContextMenu.IsOpen = true;
+                BtnOpciones.ContextMenu.PlacementTarget = BtnOpciones;
+                BtnOpciones.ContextMenu.IsOpen = true;
             }
         }
     }
