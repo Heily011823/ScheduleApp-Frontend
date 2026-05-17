@@ -30,7 +30,8 @@ namespace ScheduleApp.UI.ViewModels
             RoleName = user.RoleName;
             Status = user.Status;
 
-            BackCommand = new RelayCommand(o =>
+            // CORREGIDO: Usamos la clase interna privada y exclusiva para este ViewModel
+            BackCommand = new DetalleRelayCommand(o =>
             {
                 OnBack?.Invoke();
             });
@@ -38,12 +39,33 @@ namespace ScheduleApp.UI.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void OnPropertyChanged(
-            [CallerMemberName] string? propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // =========================================================================
+        // CLASE INTERNA PRIVADA: Comando exclusivo de Detalles para evitar colisiones
+        // =========================================================================
+        private class DetalleRelayCommand : ICommand
+        {
+            private readonly Action<object?> _execute;
+            private readonly Predicate<object?>? _canExecute;
+
+            public DetalleRelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
+            {
+                _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+                _canExecute = canExecute;
+            }
+
+            public bool CanExecute(object? parameter) => _canExecute == null || _canExecute(parameter);
+            public void Execute(object? parameter) => _execute(parameter);
+
+            public event EventHandler? CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
         }
     }
 }

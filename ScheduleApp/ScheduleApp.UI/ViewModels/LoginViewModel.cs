@@ -20,7 +20,9 @@ namespace ScheduleApp.UI.ViewModels
         public LoginViewModel()
         {
             _authenticationService = new AuthApiService();
-            LoginCommand = new RelayCommand(ExecuteLogin);
+
+            // CORREGIDO: Ahora usa la clase interna privada y aislada de Login
+            LoginCommand = new LoginRelayCommand(ExecuteLogin);
         }
 
         public string Usuario
@@ -72,8 +74,8 @@ namespace ScheduleApp.UI.ViewModels
 
             if (loginSuccess)
             {
-                SessionService.Token = _authenticationService.Token;  
-                SessionService.Role = _authenticationService.Role;   
+                SessionService.Token = _authenticationService.Token;
+                SessionService.Role = _authenticationService.Role;
                 RolUsuario = _authenticationService.Role;
                 OnLoginSuccess?.Invoke();
             }
@@ -88,6 +90,30 @@ namespace ScheduleApp.UI.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string? nombre = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
+        }
+
+        // =========================================================================
+        // CLASE INTERNA PRIVADA: Comando exclusivo del Login para evitar colisiones
+        // =========================================================================
+        private class LoginRelayCommand : ICommand
+        {
+            private readonly Action<object?> _execute;
+            private readonly Predicate<object?>? _canExecute;
+
+            public LoginRelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
+            {
+                _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+                _canExecute = canExecute;
+            }
+
+            public bool CanExecute(object? parameter) => _canExecute == null || _canExecute(parameter);
+            public void Execute(object? parameter) => _execute(parameter);
+
+            public event EventHandler? CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
         }
     }
 }

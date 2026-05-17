@@ -1,6 +1,7 @@
 ﻿using ScheduleApp.UI.Models;
 using ScheduleApp.UI.Services;
 using ScheduleApp.UI.Views;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -165,7 +166,12 @@ namespace ScheduleApp.UI.ViewModels
             // MATERIAS
             ShowMateriasCommand = new RelayCommand(o =>
             {
-                CurrentView = new MateriasView();
+                var materiasViewModel = new MateriasViewModel();
+                var materiasView = new MateriasView();
+
+                materiasView.DataContext = materiasViewModel;
+
+                CurrentView = materiasView;
                 ModuloActivo = "Materias";
             });
 
@@ -211,10 +217,10 @@ namespace ScheduleApp.UI.ViewModels
                 ModuloActivo = "Usuarios";
             });
 
-            // INFORMACIÓN ← corregido: ViewModel no View
+            // INFORMACIÓN
             ShowInformacionCommand = new RelayCommand(o =>
             {
-                CurrentView = new InformationViewModel();
+                CurrentView = new InformationView();
                 ModuloActivo = "Información";
             });
 

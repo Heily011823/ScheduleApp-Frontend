@@ -99,8 +99,9 @@ namespace ScheduleApp.UI.ViewModels
             _userApiService = new UserApiService();
             FormTitle = "Nuevo Usuario";
 
-            SaveCommand = new RelayCommand(async o => await ExecuteSaveAsync());
-            CancelCommand = new RelayCommand(ExecuteCancel);
+            // CORREGIDO: Usando la clase interna aislada para evitar conflictos
+            SaveCommand = new FormularioAsyncCommand(async () => await ExecuteSaveAsync());
+            CancelCommand = new FormularioAsyncCommand(() => ExecuteCancel());
         }
 
         public UserFormViewModel(UserModel userToEdit)
@@ -117,8 +118,9 @@ namespace ScheduleApp.UI.ViewModels
             SelectedRole = userToEdit.RoleName;
             SelectedStatus = userToEdit.IsActive ? "Activo" : "Inactivo";
 
-            SaveCommand = new RelayCommand(async o => await ExecuteSaveAsync());
-            CancelCommand = new RelayCommand(ExecuteCancel);
+            // CORREGIDO: Usando la clase interna aislada para evitar conflictos
+            SaveCommand = new FormularioAsyncCommand(async () => await ExecuteSaveAsync());
+            CancelCommand = new FormularioAsyncCommand(() => ExecuteCancel());
         }
 
         private async Task ExecuteSaveAsync()
@@ -295,19 +297,58 @@ namespace ScheduleApp.UI.ViewModels
             OnSaveSuccess?.Invoke();
         }
 
-        private void ExecuteCancel(object? parameter)
+        private void ExecuteCancel()
         {
             OnCancel?.Invoke();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void OnPropertyChanged(
-            [CallerMemberName] string? propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // =========================================================================
+        // CLASE INTERNA PRIVADA: Comando aislado exclusivo para el Formulario de Usuarios
+        // =========================================================================
+        private class FormularioAsyncCommand : ICommand
+        {
+            private readonly Func<Task>? _executeAsync;
+            private readonly Action? _executeSync;
+            private readonly Func<bool>? _canExecute;
+
+            public FormularioAsyncCommand(Func<Task> executeAsync, Func<bool>? canExecute = null)
+            {
+                _executeAsync = executeAsync ?? throw new ArgumentNullException(nameof(executeAsync));
+                _canExecute = canExecute;
+            }
+
+            public FormularioAsyncCommand(Action executeSync, Func<bool>? canExecute = null)
+            {
+                _executeSync = executeSync ?? throw new ArgumentNullException(nameof(executeSync));
+                _canExecute = canExecute;
+            }
+
+            public bool CanExecute(object? parameter) => _canExecute == null || _canExecute();
+
+            public async void Execute(object? parameter)
+            {
+                if (_executeAsync != null)
+                {
+                    await _executeAsync();
+                }
+                else if (_executeSync != null)
+                {
+                    _executeSync();
+                }
+            }
+
+            public event EventHandler? CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
         }
     }
 }

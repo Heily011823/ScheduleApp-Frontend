@@ -48,8 +48,11 @@ namespace ScheduleApp.UI.ViewModels
             _userApiService = new UserApiService();
             _userToDelete = userToDelete;
 
+            // El de cancelar usa el RelayCommand tradicional normal de tu proyecto
             CancelCommand = new RelayCommand(ExecuteCancel);
-            ConfirmDeleteCommand = new RelayCommand(async o => await ExecuteDeleteAsync());
+
+            // CORREGIDO: Usamos el comando asíncrono privado sin enviarle parámetros innecesarios
+            ConfirmDeleteCommand = new DeleteAsyncCommand(async () => await ExecuteDeleteAsync());
         }
 
         private void ExecuteCancel(object? parameter)
@@ -86,12 +89,33 @@ namespace ScheduleApp.UI.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void OnPropertyChanged(
-            [CallerMemberName] string? propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // =========================================================================
+        // CLASE INTERNA PRIVADA: Comando asíncrono aislado para la eliminación
+        // =========================================================================
+        private class DeleteAsyncCommand : ICommand
+        {
+            private readonly Func<Task> _execute;
+            private readonly Func<bool>? _canExecute;
+
+            public DeleteAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null)
+            {
+                _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+                _canExecute = canExecute;
+            }
+
+            public bool CanExecute(object? parameter) => _canExecute == null || _canExecute();
+            public async void Execute(object? parameter) => await _execute();
+
+            public event EventHandler? CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
         }
     }
 }
