@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="ScheduleApp.UI.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ScheduleApp.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="950"
+             Background="White">
+
+    <Grid>
+        <Image Source="/Assets/ImagenFondo.jpeg" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Bottom" 
+               Width="450" 
+               Opacity="0.12" 
+               Stretch="Uniform" 
+               Margin="0,0,10,10"/>
+
+        <DockPanel Margin="40,30,40,35">
+
+            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,30">
+                <TextBlock Text="{Binding WelcomeMessage}" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Foreground="Black" 
+                           Margin="0,0,0,8"/>
+                <TextBlock Text="{Binding GestionMessage}" 
+                           FontSize="16" 
+                           Foreground="#555555"/>
+            </StackPanel>
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Materias" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/MateriasDashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding MateriasTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Docentes" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/Docentedashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding DocentesTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Horarios" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/Horariodashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding HorariosTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Programas" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/Programasdashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding ProgramasTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Aulas" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/Auladashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding AulasTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="#DCDCDC" BorderThickness="1.5" Margin="12" Background="White" Width="210" Height="210">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding UserRole}" Value="Administrador">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15">
+                        <TextBlock Text="Coordinadores" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                        <Image Source="/Assets/Cordinadordashboard.png" Width="55" Height="55" Margin="0,0,0,15" Stretch="Uniform"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Total registradas: " FontSize="13" Foreground="#555555"/>
+                            <TextBlock Text="{Binding CoordinadoresTotal}" FontSize="13" FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </WrapPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="ScheduleApp.UI.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:ScheduleApp.UI.Views"
+        Title="Login"
+        Height="580" 
+        Width="1020"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Grid>
+        <view:LoginView/>
+    </Grid>
+</Window>

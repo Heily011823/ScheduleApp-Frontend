@@ -3,10 +3,344 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ScheduleApp.UI"
+        xmlns:viewmodels="clr-namespace:ScheduleApp.UI.ViewModels"
+        xmlns:views="clr-namespace:ScheduleApp.UI.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ScheduleApp"
+        Height="750"
+        Width="1200"
+        WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Background" Value="#1B2A41"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#1B2A41"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <DataTemplate DataType="{x:Type viewmodels:InformationViewModel}">
+            <views:InformationView/>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#1B2A41">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Row="0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+
+                <StackPanel Margin="25,10,25,20">
+
+                    <Image Source="pack://application:,,,/Assets/Logo.jpeg"
+                           Height="150"
+                           Stretch="Uniform"
+                           Margin="0,0,0,10"/>
+
+                    <StackPanel HorizontalAlignment="Center"
+                                Margin="0,0,0,20">
+
+                        <Image Source="{Binding ImagenRol}"
+                               Width="45"
+                               Height="45"
+                               Stretch="Uniform"
+                               Margin="0,0,0,5"/>
+
+                        <TextBlock Text="{Binding RolUsuario}"
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Button Command="{Binding ShowDashboardCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Inicio">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Inicio.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Inicio"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowMateriasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Materias">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Materias.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Materias"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowProgramasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Programas">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Programas.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Programas"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowDocentesCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Docentes">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Docentes.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Docentes"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowAulasCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Aulas">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Aulas.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Aulas"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowHorariosCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Horarios">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Horarios.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Horarios"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowRestriccionesCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Restricciones">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Restricciones.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Restricciones"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowUsuariosCommand}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Usuarios">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Usuarios.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Usuarios"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowManualCommand}"
+                            Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Manual">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/ManualUsuario.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Manual del sistema"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding ShowInformacionCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModuloActivo}" Value="Información">
+                                        <Setter Property="Background" Value="#D4B36A"/>
+                                        <Setter Property="BorderBrush" Value="#D4B36A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <Image Source="pack://application:,,,/Assets/Informacion.png"
+                                   Width="18"
+                                   Height="18"
+                                   Margin="0,0,12,0"/>
+                            <TextBlock Text="Información"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <Button Grid.Row="1"
+                    Command="{Binding ShowLogoutCommand}"
+                    Height="44"
+                    Width="210"
+                    Margin="0,10,0,25"
+                    HorizontalAlignment="Center"
+                    Background="#1B2A41"
+                    BorderBrush="#D4B36A"
+                    Cursor="Hand">
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <Image Source="pack://application:,,,/Assets/CerrarSesion.png"
+                           Width="18"
+                           Height="18"
+                           Margin="0,0,12,0"/>
+
+                    <TextBlock Text="Cerrar sesión"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="White">
+
+            <Image Source="pack://application:,,,/Assets/ImagenFondo.jpeg"
+                   Opacity="0.12"
+                   Width="750"
+                   Stretch="Uniform"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+            <ContentControl Content="{Binding CurrentView}"/>
+        </Grid>
     </Grid>
 </Window>
