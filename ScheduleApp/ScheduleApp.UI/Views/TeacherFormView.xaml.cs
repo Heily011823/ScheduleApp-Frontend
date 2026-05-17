@@ -48,5 +48,61 @@ namespace ScheduleApp.UI.Views
             Step2Text.Foreground =
                 new SolidColorBrush(Color.FromRgb(102, 112, 133));
         }
+
+        private void Step2NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            Step2Grid.Visibility = Visibility.Collapsed;
+            Step3Grid.Visibility = Visibility.Visible;
+
+            Step2Circle.Background = Brushes.Transparent;
+            Step2Circle.BorderBrush =
+                new SolidColorBrush(Color.FromRgb(34, 197, 94));
+
+            Step2Circle.BorderThickness = new Thickness(1.5);
+
+            ((TextBlock)Step2Circle.Child).Foreground =
+                new SolidColorBrush(Color.FromRgb(34, 197, 94));
+
+            Step2Text.Foreground =
+                new SolidColorBrush(Color.FromRgb(34, 197, 94));
+
+            Step3Circle.Background =
+                new SolidColorBrush(Color.FromRgb(109, 118, 131));
+
+            Step3Circle.BorderThickness = new Thickness(0);
+
+            ((TextBlock)Step3Circle.Child).Foreground = Brushes.White;
+
+            Step3Text.Foreground =
+                new SolidColorBrush(Color.FromRgb(102, 112, 133));
+        }
+
+        private void BackToStep2_Click(object sender, RoutedEventArgs e)
+        {
+            Step3Grid.Visibility = Visibility.Collapsed;
+            Step2Grid.Visibility = Visibility.Visible;
+
+            Step3Circle.Background = Brushes.Transparent;
+            Step3Circle.BorderBrush =
+                new SolidColorBrush(Color.FromRgb(156, 163, 175));
+
+            Step3Circle.BorderThickness = new Thickness(1.5);
+
+            ((TextBlock)Step3Circle.Child).Foreground =
+                new SolidColorBrush(Color.FromRgb(107, 114, 128));
+
+            Step3Text.Foreground =
+                new SolidColorBrush(Color.FromRgb(107, 114, 128));
+
+            Step2Circle.Background =
+                new SolidColorBrush(Color.FromRgb(109, 118, 131));
+
+            Step2Circle.BorderThickness = new Thickness(0);
+
+            ((TextBlock)Step2Circle.Child).Foreground = Brushes.White;
+
+            Step2Text.Foreground =
+                new SolidColorBrush(Color.FromRgb(102, 112, 133));
+        }
     }
 }

@@ -35,7 +35,6 @@
                                Foreground="Black"
                                VerticalAlignment="Center"/>
 
-                    <!-- MÁS OPCIONES -->
                     <StackPanel Grid.Column="1"
                                 HorizontalAlignment="Center">
 
@@ -46,10 +45,6 @@
                                 Cursor="Hand">
 
                             <StackPanel>
-                                <Ellipse Width="4"
-                                         Height="4"
-                                         Fill="#333"
-                                         Margin="0,1"/>
 
                                 <Ellipse Width="4"
                                          Height="4"
@@ -60,6 +55,12 @@
                                          Height="4"
                                          Fill="#333"
                                          Margin="0,1"/>
+
+                                <Ellipse Width="4"
+                                         Height="4"
+                                         Fill="#333"
+                                         Margin="0,1"/>
+
                             </StackPanel>
 
                         </Button>
@@ -74,8 +75,7 @@
 
                 <!-- STEPPER -->
                 <Grid Grid.Row="1"
-      Margin="0,30,0,30"
-      ClipToBounds="False">
+                      Margin="0,30,0,30">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -87,115 +87,110 @@
 
                     <!-- PASO 1 -->
                     <StackPanel Grid.Column="0"
-                Orientation="Horizontal"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left">
+                                Orientation="Horizontal">
 
                         <Border x:Name="Step1Circle"
-                Width="55"
-                Height="55"
-                Background="#6D7683"
-                CornerRadius="28">
+                                Width="55"
+                                Height="55"
+                                Background="#6D7683"
+                                CornerRadius="28">
 
                             <TextBlock Text="1"
-                       Foreground="White"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                                       Foreground="White"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
                         </Border>
 
                         <TextBlock x:Name="Step1Text"
-                   Text="Información Básica"
-                   FontSize="16"
-                   FontWeight="SemiBold"
-                   Foreground="#667085"
-                   Margin="12,0,0,0"
-                   VerticalAlignment="Center"/>
+                                   Text="Información Básica"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#667085"
+                                   Margin="12,0,0,0"
+                                   VerticalAlignment="Center"/>
 
                     </StackPanel>
 
-                    <!-- LINEA 1 -->
+                    <!-- LINEA -->
                     <Rectangle Grid.Column="1"
-               Height="3"
-               Fill="#9CA3AF"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Stretch"
-               Margin="10,0"/>
+                               Height="3"
+                               Fill="#9CA3AF"
+                               VerticalAlignment="Center"
+                               Margin="10,0"/>
 
                     <!-- PASO 2 -->
                     <StackPanel Grid.Column="2"
-                Orientation="Horizontal"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
+                                Orientation="Horizontal">
 
                         <Border x:Name="Step2Circle"
-                Width="55"
-                Height="55"
-                BorderBrush="#9CA3AF"
-                BorderThickness="1.5"
-                Background="Transparent"
-                CornerRadius="28">
+                                Width="55"
+                                Height="55"
+                                BorderBrush="#9CA3AF"
+                                BorderThickness="1.5"
+                                Background="Transparent"
+                                CornerRadius="28">
 
                             <TextBlock Text="2"
-                       Foreground="#6B7280"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                                       Foreground="#6B7280"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
                         </Border>
 
                         <TextBlock x:Name="Step2Text"
-                   Text="Especialidades y Materias"
-                   FontSize="16"
-                   FontWeight="SemiBold"
-                   Foreground="#667085"
-                   Margin="12,0,0,0"
-                   VerticalAlignment="Center"
-                   Width="150"
-                   TextWrapping="Wrap"/>
+                                   Text="Especialidades y Materias"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#667085"
+                                   Width="150"
+                                   Margin="12,0,0,0"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"/>
 
                     </StackPanel>
 
-                    <!-- LINEA 2 -->
+                    <!-- LINEA -->
                     <Rectangle Grid.Column="3"
-               Height="3"
-               Fill="#9CA3AF"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Stretch"
-               Margin="10,0"/>
+                               Height="3"
+                               Fill="#9CA3AF"
+                               VerticalAlignment="Center"
+                               Margin="10,0"/>
 
                     <!-- PASO 3 -->
                     <StackPanel Grid.Column="4"
-                Orientation="Horizontal"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
+                                Orientation="Horizontal">
 
                         <Border x:Name="Step3Circle"
-                Width="55"
-                Height="55"
-                BorderBrush="#9CA3AF"
-                BorderThickness="1.5"
-                Background="Transparent"
-                CornerRadius="28">
+                                Width="55"
+                                Height="55"
+                                BorderBrush="#9CA3AF"
+                                BorderThickness="1.5"
+                                Background="Transparent"
+                                CornerRadius="28">
 
                             <TextBlock Text="3"
-                       Foreground="#6B7280"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                                       Foreground="#6B7280"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
                         </Border>
 
                         <TextBlock x:Name="Step3Text"
-                   Text="Disponibilidad Horaria"
-                   FontSize="16"
-                   FontWeight="SemiBold"
-                   Foreground="#667085"
-                   Margin="12,0,0,0"
-                   VerticalAlignment="Center"
-                   Width="120"
-                   TextWrapping="Wrap"/>
+                                   Text="Disponibilidad Horaria"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#667085"
+                                   Width="120"
+                                   Margin="12,0,0,0"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"/>
 
                     </StackPanel>
 
@@ -219,7 +214,6 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- TITULO -->
                             <TextBlock Text="Información básica del docente"
                                        FontSize="24"
                                        FontWeight="Bold"
@@ -237,11 +231,7 @@
                                         <Setter Property="Padding" Value="10,0"/>
                                         <Setter Property="BorderBrush" Value="#A3A3A3"/>
                                         <Setter Property="BorderThickness" Value="1"/>
-                                    </Style>
-
-                                    <Style TargetType="ComboBox">
-                                        <Setter Property="Height" Value="40"/>
-                                        <Setter Property="FontSize" Value="14"/>
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
                                     </Style>
 
                                 </Grid.Resources>
@@ -269,7 +259,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="1054929981"/>
 
                                 </StackPanel>
 
@@ -284,7 +274,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="3165768610"/>
 
                                 </StackPanel>
 
@@ -298,7 +288,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="6"/>
 
                                 </StackPanel>
 
@@ -313,7 +303,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="Maria Paz"/>
 
                                 </StackPanel>
 
@@ -328,7 +318,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="maria@gmail.com"/>
 
                                 </StackPanel>
 
@@ -342,8 +332,12 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <ComboBox SelectedIndex="0">
+                                    <ComboBox Height="40"
+                                              FontSize="14"
+                                              SelectedIndex="0"
+                                              Foreground="#6B7280">
 
+                                        <ComboBoxItem Content="Seleccione un tipo de contrato"/>
                                         <ComboBoxItem Content="Tiempo completo"/>
                                         <ComboBoxItem Content="Medio tiempo"/>
 
@@ -362,7 +356,7 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <TextBox/>
+                                    <TextBox Text="Puerta"/>
 
                                 </StackPanel>
 
@@ -377,8 +371,12 @@
                                         <Run Foreground="Red">*</Run>
                                     </TextBlock>
 
-                                    <ComboBox SelectedIndex="0">
+                                    <ComboBox Height="40"
+                                              FontSize="14"
+                                              SelectedIndex="0"
+                                              Foreground="#6B7280">
 
+                                        <ComboBoxItem Content="Seleccione un estado"/>
                                         <ComboBoxItem Content="Activo"/>
                                         <ComboBoxItem Content="Inactivo"/>
 
@@ -420,8 +418,7 @@
                                             Margin="0,0,12,0"
                                             Background="White"
                                             BorderBrush="#444"
-                                            BorderThickness="1"
-                                            Cursor="Hand"/>
+                                            BorderThickness="1"/>
 
                                     <Button Width="170"
                                             Height="45"
@@ -429,13 +426,9 @@
                                             Foreground="White"
                                             FontSize="14"
                                             FontWeight="SemiBold"
-                                            Cursor="Hand"
-                                            BorderBrush="#0F172A"
-                                            BorderThickness="1"
                                             Click="NextButton_Click">
 
-                                        <StackPanel Orientation="Horizontal"
-                                                    HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
 
                                             <TextBlock Text="Siguiente"
                                                        Margin="0,0,8,0"/>
@@ -458,22 +451,935 @@
 
                 <!-- STEP 2 -->
                 <Grid x:Name="Step2Grid"
-                      Grid.Row="2"
-                      Visibility="Collapsed">
+      Grid.Row="2"
+      Visibility="Collapsed">
 
                     <Border BorderBrush="#B0B0B0"
-                            BorderThickness="1"
-                            CornerRadius="20"
-                            Padding="28"
-                            Background="#F7F7F7">
+            BorderThickness="1"
+            CornerRadius="20"
+            Padding="28"
+            Background="#F7F7F7">
 
                         <Grid>
 
-                            <TextBlock Text="SECCIÓN 2"
-                                       FontSize="40"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- CONTENIDO -->
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.1*"/>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="1.6*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- IZQUIERDA -->
+                                <StackPanel Grid.Column="0">
+
+                                    <TextBlock Text="Especialidades que maneja"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="#1F2937"/>
+
+                                    <TextBlock Text="(Seleccione una o varias)"
+                               FontSize="15"
+                               Foreground="#6B7280"
+                               Margin="0,5,0,25"/>
+
+                                    <CheckBox Content="Matemáticas"
+                              FontSize="17"
+                              Margin="0,0,0,20"/>
+
+                                    <CheckBox Content="Programación"
+                              FontSize="17"
+                              Margin="0,0,0,25"
+                              IsChecked="True"/>
+
+                                    <TextBlock Text="Otra especialidad"
+                               FontSize="15"
+                               Foreground="#6B7280"
+                               Margin="0,0,0,10"/>
+
+                                    <TextBox Width="280"
+                             Height="42"
+                             FontSize="15"
+                             Padding="10,0"
+                             BorderBrush="#9CA3AF"
+                             BorderThickness="1"
+                             Foreground="#9CA3AF"
+                             Text="Especifique otra especialidad..."/>
+
+                                </StackPanel>
+
+                                <!-- LINEA -->
+                                <Border Grid.Column="1"
+                        Width="1"
+                        Background="#D1D5DB"
+                        Margin="10,0"/>
+
+                                <!-- DERECHA -->
+                                <StackPanel Grid.Column="2">
+
+                                    <TextBlock Text="Materias que puede dictar"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="#1F2937"/>
+
+                                    <TextBlock Text="(Seleccione las materias y el sistema calculará las horas)"
+                               FontSize="15"
+                               Foreground="#6B7280"
+                               Margin="0,5,0,20"/>
+
+                                    <!-- TABLA -->
+                                    <Border BorderBrush="#9CA3AF"
+                            BorderThickness="1">
+
+                                        <Grid>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="55"/>
+                                                <RowDefinition Height="65"/>
+                                                <RowDefinition Height="65"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="140"/>
+                                                <ColumnDefinition Width="200"/>
+                                                <ColumnDefinition Width="100"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- HEADER -->
+                                            <Border Grid.Row="0"
+                                    Grid.Column="0"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1"
+                                    Background="#E5E7EB">
+
+                                                <TextBlock Text="Seleccionar"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="0"
+                                    Grid.Column="1"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1"
+                                    Background="#E5E7EB">
+
+                                                <TextBlock Text="Código"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="0"
+                                    Grid.Column="2"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1"
+                                    Background="#E5E7EB">
+
+                                                <TextBlock Text="Materia"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="0"
+                                    Grid.Column="3"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,0,1"
+                                    Background="#E5E7EB">
+
+                                                <TextBlock Text="Horas"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <!-- FILA 1 -->
+                                            <Border Grid.Row="1"
+                                    Grid.Column="0"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1">
+
+                                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsChecked="True"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="1"
+                                    Grid.Column="1"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1">
+
+                                                <TextBlock Text="103026"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="1"
+                                    Grid.Column="2"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,1">
+
+                                                <TextBlock Text="Redes LAN"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="1"
+                                    Grid.Column="3"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,0,1">
+
+                                                <TextBlock Text="4"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <!-- FILA 2 -->
+                                            <Border Grid.Row="2"
+                                    Grid.Column="0"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,0">
+
+                                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="2"
+                                    Grid.Column="1"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,0">
+
+                                                <TextBlock Text="104030"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="2"
+                                    Grid.Column="2"
+                                    BorderBrush="#9CA3AF"
+                                    BorderThickness="0,0,1,0">
+
+                                                <TextBlock Text="Cálculo Diferencial"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                            <Border Grid.Row="2"
+                                    Grid.Column="3">
+
+                                                <TextBlock Text="4"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                                            </Border>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                    <!-- HORAS -->
+                                    <TextBlock Margin="0,15,0,0"
+                               FontSize="15">
+
+                        <Run Text="Total horas seleccionadas: "
+                             Foreground="#6B7280"/>
+
+                        <Run Text="4"
+                             Foreground="#15803D"
+                             FontWeight="Bold"/>
+
+                        <Run Text=" / "
+                             Foreground="#6B7280"/>
+
+                        <Run Text="14"
+                             Foreground="#15803D"
+                             FontWeight="Bold"/>
+
+                        <Run Text=" horas disponibles"
+                             Foreground="#6B7280"/>
+
+                                    </TextBlock>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                            <!-- BOTONES -->
+                            <Grid Grid.Row="1"
+                  Margin="0,35,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Width="160"
+                        Height="45"
+                        FontSize="15"
+                        Background="White"
+                        BorderBrush="#9CA3AF"
+                        BorderThickness="1">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="←"
+                                   Margin="0,0,10,0"/>
+
+                                        <TextBlock Text="Anterior"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+
+                                    <Button Content="Cancelar"
+                            Width="160"
+                            Height="45"
+                            FontSize="15"
+                            Margin="0,0,15,0"
+                            Background="White"
+                            BorderBrush="#9CA3AF"
+                            BorderThickness="1"/>
+
+                                    <Button Width="170"
+                            Height="45"
+                            Background="#16253A"
+                            Foreground="White"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            Click="Step2NextButton_Click">
+
+
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock Text="Siguiente"
+                                       Margin="0,0,10,0"/>
+
+                                            <TextBlock Text="→"/>
+
+                                        </StackPanel>
+
+                                    </Button>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- STEP 3 -->
+                <Grid x:Name="Step3Grid"
+      Grid.Row="2"
+      Visibility="Collapsed">
+
+                    <Border BorderBrush="#B0B0B0"
+            BorderThickness="1"
+            CornerRadius="20"
+            Padding="28"
+            Background="#F7F7F7">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- TITULO -->
+                            <StackPanel>
+
+                                <TextBlock Text="Disponibilidad Horaria"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="#1E293B"/>
+
+                                <TextBlock Text="Seleccione las horas disponibles por día"
+                           FontSize="14"
+                           Foreground="#6B7280"
+                           Margin="0,5,0,0"/>
+
+                                <!-- LEYENDA -->
+                                <StackPanel Orientation="Horizontal"
+            Margin="0,15,0,0">
+
+                                    <StackPanel Orientation="Horizontal"
+                Margin="0,0,25,0">
+
+                                        <CheckBox IsChecked="True"
+                  IsEnabled="False"
+                  VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="Disponible"
+                   Margin="8,0,0,0"
+                   VerticalAlignment="Center"
+                   FontSize="13"
+                   Foreground="#374151"/>
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Border Width="16"
+                Height="16"
+                BorderBrush="#9CA3AF"
+                BorderThickness="1"
+                CornerRadius="2"
+                VerticalAlignment="Center"/>
+
+                                        <TextBlock Text="No disponible"
+                   Margin="8,0,0,0"
+                   VerticalAlignment="Center"
+                   FontSize="13"
+                   Foreground="#374151"/>
+
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                            
+                            
+
+                            <!-- TABLA -->
+                            <ScrollViewer Grid.Row="1"
+                          Margin="0,25,0,0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto">
+
+                                <Border BorderBrush="#D1D5DB"
+                        BorderThickness="1"
+                        CornerRadius="10">
+
+                                    <Grid>
+
+                                        <!-- COLUMNAS -->
+                                        <Grid.ColumnDefinitions>
+
+                                            <ColumnDefinition Width="100"/>
+
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- FILAS -->
+                                        <Grid.RowDefinitions>
+
+                                            <!-- HEADER -->
+                                            <RowDefinition Height="45"/>
+
+                                            <!-- 7:00 AM hasta 10:30 PM -->
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="40"/>
+
+                                        </Grid.RowDefinitions>
+
+                                        <!-- HEADER -->
+                                        <Border Grid.Row="0" Grid.Column="0"
+                                Background="#E5E7EB"
+                                BorderBrush="#D1D5DB"
+                                BorderThickness="0,0,1,1">
+
+                                            <TextBlock Text="Hora"
                                        FontWeight="Bold"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"/>
+
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="1" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1">
+                                            <TextBlock Text="Lunes" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="2" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1">
+                                            <TextBlock Text="Martes" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="3" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1">
+                                            <TextBlock Text="Miércoles" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="4" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1">
+                                            <TextBlock Text="Jueves" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="5" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,1,1">
+                                            <TextBlock Text="Viernes" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Row="0" Grid.Column="6" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="0,0,0,1">
+                                            <TextBlock Text="Sábado" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <!-- HORARIOS -->
+                                        <!-- COPIA ESTE MISMO PATRÓN -->
+
+                                        <!-- 7:00 AM -->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="7:00 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="1" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 7:30 AM -->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="7:30 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 8:00 AM -->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="8:00 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="3" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 8:30 AM -->
+                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="8:30 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="4" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 9:00 AM -->
+                                        <TextBlock Grid.Row="5" Grid.Column="0" Text="9:00 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="5" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 9:30 AM -->
+                                        <TextBlock Grid.Row="6" Grid.Column="0" Text="9:30 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="6" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 10:00 AM -->
+                                        <TextBlock Grid.Row="7" Grid.Column="0" Text="10:00 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="7" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 10:30 AM -->
+                                        <TextBlock Grid.Row="8" Grid.Column="0" Text="10:30 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="8" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 11:00 AM -->
+                                        <TextBlock Grid.Row="9" Grid.Column="0" Text="11:00 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="9" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 11:30 AM -->
+                                        <TextBlock Grid.Row="10" Grid.Column="0" Text="11:30 AM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="10" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 12:00 PM -->
+                                        <TextBlock Grid.Row="11" Grid.Column="0" Text="12:00 PM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="11" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 12:30 PM -->
+                                        <TextBlock Grid.Row="12" Grid.Column="0" Text="12:30 PM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="12" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 1:00 PM -->
+                                        <TextBlock Grid.Row="13" Grid.Column="0" Text="1:00 PM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="13" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 1:30 PM -->
+                                        <TextBlock Grid.Row="14" Grid.Column="0" Text="1:30 PM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="14" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 2:00 PM -->
+                                        <TextBlock Grid.Row="15" Grid.Column="0" Text="2:00 PM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="15" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 2:30 PM ================= -->
+                                        <TextBlock Grid.Row="16"
+           Text="2:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="16" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="16" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="16" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="16" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="16" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="16" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 3:00 PM ================= -->
+                                        <TextBlock Grid.Row="17"
+           Text="3:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="17" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="17" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="17" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="17" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="17" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="17" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 3:30 PM ================= -->
+                                        <TextBlock Grid.Row="18"
+           Text="3:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="18" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="18" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="18" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="18" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="18" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="18" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 4:00 PM ================= -->
+                                        <TextBlock Grid.Row="19"
+           Text="4:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="19" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="19" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="19" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="19" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="19" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="19" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 4:30 PM ================= -->
+                                        <TextBlock Grid.Row="20"
+           Text="4:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="20" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="20" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="20" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="20" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="20" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 5:00 PM ================= -->
+                                        <TextBlock Grid.Row="21"
+           Text="5:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="21" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="21" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="21" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="21" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="21" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="21" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 5:30 PM ================= -->
+                                        <TextBlock Grid.Row="22"
+           Text="5:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="22" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="22" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="22" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="22" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="22" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="22" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 6:00 PM ================= -->
+                                        <TextBlock Grid.Row="23"
+           Text="6:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="23" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="23" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="23" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="23" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="23" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="23" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 6:30 PM ================= -->
+                                        <TextBlock Grid.Row="24"
+           Text="6:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="24" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="24" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="24" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="24" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="24" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="24" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 7:00 PM ================= -->
+                                        <TextBlock Grid.Row="25"
+           Text="7:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="25" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="25" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="25" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="25" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="25" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="25" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 7:30 PM ================= -->
+                                        <TextBlock Grid.Row="26"
+           Text="7:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="26" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="26" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="26" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="26" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="26" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="26" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 8:00 PM ================= -->
+                                        <TextBlock Grid.Row="27"
+           Text="8:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="27" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="27" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="27" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="27" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="27" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="27" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 8:30 PM ================= -->
+                                        <TextBlock Grid.Row="28"
+           Text="8:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="28" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="28" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="28" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="28" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="28" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="28" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 9:00 PM ================= -->
+                                        <TextBlock Grid.Row="29"
+           Text="9:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="29" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="29" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="29" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="29" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="29" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="29" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 9:30 PM ================= -->
+                                        <TextBlock Grid.Row="30"
+           Text="9:30 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="30" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="30" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="30" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="30" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="30" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="30" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- ================= 10:00 PM ================= -->
+                                        <TextBlock Grid.Row="31"
+           Text="10:00 PM"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="31" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="31" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="31" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="31" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="31" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="31" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <!-- 10:30 PM -->
+                                        <TextBlock Grid.Row="32"
+                                   Grid.Column="0"
+                                   Text="10:30 PM"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                                        <CheckBox Grid.Row="32" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="32" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="32" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="32" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="32" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <CheckBox Grid.Row="32" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </ScrollViewer>
+
+                            <!-- BOTONES -->
+                            <Grid Grid.Row="2"
+                  Margin="0,25,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- ATRAS -->
+                                <Button Content="← Anterior"
+                        Width="160"
+                        Height="45"
+                        FontSize="14"
+                        Background="White"
+                        BorderBrush="#9CA3AF"
+                        BorderThickness="1"
+                        Click="BackToStep2_Click"/>
+
+                                <!-- DERECHA -->
+                                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+
+                                    <Button Content="Cancelar"
+                            Width="150"
+                            Height="45"
+                            FontSize="14"
+                            Margin="0,0,12,0"
+                            Background="White"
+                            BorderBrush="#444"
+                            BorderThickness="1"/>
+
+                                    <Button Content="Guardar"
+                            Width="170"
+                            Height="45"
+                            Background="#16253A"
+                            Foreground="White"
+                            FontSize="14"
+                            FontWeight="SemiBold"/>
+
+                                </StackPanel>
+
+                            </Grid>
 
                         </Grid>
 
