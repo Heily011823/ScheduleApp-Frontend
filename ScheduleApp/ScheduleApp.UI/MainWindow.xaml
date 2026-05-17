@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:ScheduleApp.UI.ViewModels"
+        xmlns:views="clr-namespace:ScheduleApp.UI.Views"
         mc:Ignorable="d"
         Title="ScheduleApp"
         Height="750"
@@ -23,6 +25,11 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
+
+        <DataTemplate DataType="{x:Type viewmodels:InformationViewModel}">
+            <views:InformationView/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid>
@@ -31,7 +38,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- MENÚ LATERAL -->
         <Grid Grid.Column="0" Background="#1B2A41">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -44,13 +50,11 @@
 
                 <StackPanel Margin="25,10,25,20">
 
-                    <!-- LOGO -->
                     <Image Source="pack://application:,,,/Assets/Logo.jpeg"
                            Height="150"
                            Stretch="Uniform"
                            Margin="0,0,0,10"/>
 
-                    <!-- ROL -->
                     <StackPanel HorizontalAlignment="Center"
                                 Margin="0,0,0,20">
 
@@ -67,7 +71,6 @@
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- INICIO -->
                     <Button Command="{Binding ShowDashboardCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -91,7 +94,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- MATERIAS -->
                     <Button Command="{Binding ShowMateriasCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -115,7 +117,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- PROGRAMAS -->
                     <Button Command="{Binding ShowProgramasCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -139,7 +140,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- DOCENTES -->
                     <Button Command="{Binding ShowDocentesCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -163,7 +163,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- AULAS -->
                     <Button Command="{Binding ShowAulasCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -187,7 +186,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- HORARIOS -->
                     <Button Command="{Binding ShowHorariosCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -211,7 +209,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- RESTRICCIONES -->
                     <Button Command="{Binding ShowRestriccionesCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -235,7 +232,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- USUARIOS SOLO ADMIN -->
                     <Button Command="{Binding ShowUsuariosCommand}"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button.Style>
@@ -260,7 +256,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- MANUAL SOLO ADMIN -->
                     <Button Command="{Binding ShowManualCommand}"
                             Visibility="{Binding EsAdministrador, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button.Style>
@@ -285,7 +280,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- INFORMACIÓN -->
                     <Button Command="{Binding ShowInformacionCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
@@ -312,7 +306,6 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <!-- CERRAR SESIÓN -->
             <Button Grid.Row="1"
                     Command="{Binding ShowLogoutCommand}"
                     Height="44"
@@ -338,7 +331,6 @@
             </Button>
         </Grid>
 
-        <!-- CONTENIDO -->
         <Grid Grid.Column="1" Background="White">
 
             <Image Source="pack://application:,,,/Assets/ImagenFondo.jpeg"

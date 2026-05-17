@@ -60,4 +60,12 @@
 		<Resource Include="Assets\Informacion.png" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\Users\USUARIO\Documents\Schedelapp\ScheduleApp-Frontend\ScheduleApp\ScheduleApp.UI\Views\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="C:\Users\USUARIO\Documents\Schedelapp\ScheduleApp-Frontend\ScheduleApp\ScheduleApp.UI\Views\.editorconfig" />
+	</ItemGroup>
+
 </Project>

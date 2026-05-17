@@ -4,6 +4,7 @@ using ScheduleApp.UI.Views;
 using System.Windows;
 using System.Windows.Input;
 
+
 namespace ScheduleApp.UI.ViewModels
 {
     public class MainViewModel : BaseViewModel
@@ -93,13 +94,12 @@ namespace ScheduleApp.UI.ViewModels
         {
             RolUsuario = rolUsuario;
 
-            // INICIO CORREGIDO: Ahora sí le inyecta el rol al Dashboard
+            // INICIO: Inyecta el rol al Dashboard
             ShowDashboardCommand = new RelayCommand(o =>
             {
                 var dashboardVM = new DashboardViewModel();
                 dashboardVM.UserRole = this.RolUsuario;
 
-                // Definimos los mensajes basados en el rol real
                 if (this.RolUsuario == "Coordinador")
                 {
                     dashboardVM.WelcomeMessage = "¡Bienvenido, Coordinador!";
@@ -112,7 +112,7 @@ namespace ScheduleApp.UI.ViewModels
                 }
 
                 var dashboardView = new DashboardView();
-                dashboardView.DataContext = dashboardVM; // Enlazamos los datos corregidos
+                dashboardView.DataContext = dashboardVM;
 
                 CurrentView = dashboardView;
                 ModuloActivo = "Inicio";
@@ -274,20 +274,17 @@ namespace ScheduleApp.UI.ViewModels
                 ModuloActivo = "Usuarios";
             });
 
-            // INFORMACIÓN
+
+            // INFORMACIÓN 
             ShowInformacionCommand = new RelayCommand(o =>
             {
-                CurrentView = new InformacionView();
+                var infoVM = new InformationViewModel();
+                var infoView = new InformationView();
+                infoView.DataContext = infoVM;
+
+                CurrentView = infoView;
                 ModuloActivo = "Información";
             });
-
-            // MANUAL
-            ShowManualCommand = new RelayCommand(o =>
-            {
-                CurrentView = new InformacionView();
-                ModuloActivo = "Manual";
-            });
-
             // LOGOUT
             ShowLogoutCommand = new RelayCommand(o =>
             {
@@ -297,7 +294,6 @@ namespace ScheduleApp.UI.ViewModels
 
             CancelLogoutCommand = new RelayCommand(o =>
             {
-                // Al cancelar, volvemos a invocar el comando de inicio corregido
                 ShowDashboardCommand.Execute(null);
             });
 
@@ -329,7 +325,6 @@ namespace ScheduleApp.UI.ViewModels
                 }
             });
 
-          
             ShowDashboardCommand.Execute(null);
         }
     }
