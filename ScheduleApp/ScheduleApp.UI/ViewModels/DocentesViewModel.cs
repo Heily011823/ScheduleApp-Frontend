@@ -62,14 +62,13 @@ namespace ScheduleApp.UI.ViewModels
 
         public DocentesViewModel()
         {
-            // CORREGIDO: Ahora usa la clase interna privada de este archivo de forma segura
             NextPageCommand = new DocentesRelayCommand(o => GoToNextPage());
             PreviousPageCommand = new DocentesRelayCommand(o => GoToPreviousPage());
         }
 
-        // Llamado desde DocentesView.xaml.cs cuando la vista ya está cargada
         public async Task InicializarAsync()
         {
+            // Puedes comentar o remover este MessageBox en producción
             MessageBox.Show($"Token: '{SessionService.Token}'");
             await CargarDocentesAsync();
         }
@@ -94,14 +93,21 @@ namespace ScheduleApp.UI.ViewModels
         {
             var filtrados = _todosLosDocentes.AsEnumerable();
 
+            // 1. Filtro de búsqueda (Buscador) protegido contra propiedades nulas en el modelo
             if (!string.IsNullOrWhiteSpace(SearchText))
+            {
                 filtrados = filtrados.Where(d =>
-                    d.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                    d.Email.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                    (!string.IsNullOrEmpty(d.FullName) && d.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) ||
+                    (!string.IsNullOrEmpty(d.Email) && d.Email.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) ||
+                    (!string.IsNullOrEmpty(d.IdentityDocument) && d.IdentityDocument.Contains(SearchText, StringComparison.OrdinalIgnoreCase)));
+            }
 
+            // 2. Filtro de Estado ("Activo" / "Inactivo") coordinado con el ComboBox
             if (!string.IsNullOrWhiteSpace(SelectedStatus) && SelectedStatus != "Estado")
+            {
                 filtrados = filtrados.Where(d =>
-                    d.Status.Equals(SelectedStatus, StringComparison.OrdinalIgnoreCase));
+                    !string.IsNullOrEmpty(d.Status) && d.Status.Equals(SelectedStatus, StringComparison.OrdinalIgnoreCase));
+            }
 
             var lista = filtrados.ToList();
             TotalPages = Math.Max(1, (int)Math.Ceiling((double)lista.Count / PageSize));
@@ -110,7 +116,9 @@ namespace ScheduleApp.UI.ViewModels
 
             DocentesPaginados.Clear();
             foreach (var d in lista.Skip((CurrentPage - 1) * PageSize).Take(PageSize))
+            {
                 DocentesPaginados.Add(d);
+            }
 
             OnPropertyChanged(nameof(DocentesPaginados));
             OnPropertyChanged(nameof(CurrentPage));

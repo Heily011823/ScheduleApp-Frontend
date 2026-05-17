@@ -5,141 +5,176 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ScheduleApp.UI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="1100">
+             d:DesignHeight="650" d:DesignWidth="1000">
 
-    <Grid Background="White" Margin="30,20,30,20">
+    <Grid Background="White" Margin="30,25,30,15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- ENCABEZADO: título, búsqueda y filtros -->
-        <Grid Grid.Row="0" Margin="0,0,0,20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="Docentes" 
+                       FontFamily="Segoe UI" 
+                       FontSize="32" 
+                       FontWeight="Bold" 
+                       Foreground="#111111" 
+                       Margin="0,0,0,15"/>
 
-            <Grid Grid.Row="0" Margin="0,0,0,20">
-                <TextBlock Text="Docentes" 
-                           FontFamily="Segoe UI" 
-                           FontSize="36" 
-                           FontWeight="Bold" 
-                           Foreground="Black" 
-                           HorizontalAlignment="Left" 
-                           VerticalAlignment="Center"/>
-
-                <Button HorizontalAlignment="Right" 
-                        Width="140" Height="40" 
-                        Background="#D9D9D9" 
-                        BorderBrush="#A6A6A6" 
-                        BorderThickness="1.5" 
-                        Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    CornerRadius="6">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="📤 " FontSize="14" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Exportar  ›" FontSize="16" FontWeight="SemiBold" Foreground="#333333" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </Grid>
-
-            <!-- Buscador -->
-            <Border Grid.Row="1" 
-                    Width="450" Height="45" 
-                    BorderBrush="Black" 
+            <Border Width="450" Height="40" 
+                    BorderBrush="#000000" 
                     BorderThickness="1.5" 
                     HorizontalAlignment="Left" 
-                    Margin="0,0,0,20">
+                    Margin="0,0,0,15">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="🔍" FontSize="18" 
+                    <TextBlock Grid.Column="0" Text="🔍" FontSize="14" 
                                VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
-                    <TextBox Grid.Column="1" BorderThickness="0" FontSize="16" 
+                    <TextBox Grid.Column="1" BorderThickness="0" FontSize="15" 
                              VerticalContentAlignment="Center" Background="Transparent"
                              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </Border>
 
-            <!-- Filtros -->
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
-                <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" 
-                          Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
-                          Margin="0,0,25,0" SelectedIndex="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <ComboBox Width="200" Height="36" FontSize="14" VerticalContentAlignment="Center" 
+                          Padding="6,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
+                          Margin="0,0,20,0" SelectedIndex="0">
                     <ComboBoxItem Content="Especialidad"/>
                     <ComboBoxItem Content="Sistemas"/>
                     <ComboBoxItem Content="Matemáticas"/>
                 </ComboBox>
 
-                <ComboBox Width="180" Height="40" FontSize="16" VerticalContentAlignment="Center" 
-                          Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
-                          SelectedValue="{Binding SelectedStatus}"
+                <ComboBox Width="160" Height="36" FontSize="14" VerticalContentAlignment="Center" 
+                          Padding="6,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
+                          SelectedValue="{Binding SelectedStatus, Mode=TwoWay}"
+                          SelectedValuePath="Content"
                           SelectedIndex="0">
                     <ComboBoxItem Content="Estado"/>
                     <ComboBoxItem Content="Activo"/>
                     <ComboBoxItem Content="Inactivo"/>
                 </ComboBox>
             </StackPanel>
-        </Grid>
+        </StackPanel>
 
-        <!-- TABLA DE DOCENTES -->
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding DocentesPaginados}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   HeadersVisibility="Column"
-                  GridLinesVisibility="Horizontal"
+                  GridLinesVisibility="All"
                   BorderThickness="1"
                   BorderBrush="#CBD5E1"
                   RowHeight="45"
                   FontSize="14"
-                  Margin="0,10,0,20">
+                  Background="White"
+                  HorizontalGridLinesBrush="#E5E7EB"
+                  VerticalGridLinesBrush="#E5E7EB"
+                  VerticalAlignment="Stretch"
+                  Margin="0,5,0,15">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#D9D9D9"/>
+                    <Setter Property="Foreground" Value="#222222"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="10,6,10,6"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                    <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre completo" Binding="{Binding FullName}" Width="*"/>
-                <DataGridTextColumn Header="Correo" Binding="{Binding Email}" Width="*"/>
-                <DataGridTextColumn Header="Documento" Binding="{Binding IdentityDocument}" Width="150"/>
-                <DataGridTextColumn Header="Teléfono" Binding="{Binding PhoneNumber}" Width="130"/>
-                <DataGridTextColumn Header="Estado" Binding="{Binding Status}" Width="100"/>
+                <DataGridTextColumn Header="Documento" Binding="{Binding IdentityDocument}" Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Nombre" Binding="{Binding FullName}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Padding" Value="8,0,0,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Correo" Binding="{Binding Email}" Width="1.5*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Padding" Value="8,0,0,0"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="Estado" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="EstadoContainer" Background="Transparent">
+                                <TextBlock Text="{Binding Status}" 
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center" 
+                                           Foreground="#333333"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Activo">
+                                    <Setter TargetName="EstadoContainer" Property="Background" Value="#2A7336"/>
+                                    <Setter TargetName="EstadoContainer" Property="TextBlock.Foreground" Value="White"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Acciones" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="👁" Margin="4,0" Background="Transparent" BorderThickness="0" Cursor="Hand" FontSize="15" Foreground="#555555"/>
+                                <Button Content="✏" Margin="4,0" Background="Transparent" BorderThickness="0" Cursor="Hand" FontSize="15" Foreground="#1E40AF"/>
+                                <Button Content="🗑" Margin="4,0" Background="Transparent" BorderThickness="0" Cursor="Hand" FontSize="15" Foreground="#B91C1C"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- PAGINACIÓN Y BOTÓN NUEVO -->
-        <Grid Grid.Row="2" Margin="0,15,0,10">
+        <Grid Grid.Row="2" Margin="0,5,0,5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Button Content="≪" FontSize="20" Background="Transparent" BorderThickness="0"
-                        Cursor="Hand" Margin="0,0,10,0"
+                <Button Content="≪" FontSize="18" Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Margin="0,0,8,0" Padding="5,0"
                         Command="{Binding PreviousPageCommand}"/>
-                <Border Background="#1B2A41" Width="35" Height="35">
-                    <TextBlock Text="{Binding CurrentPage}" Foreground="White" FontSize="16"
+                <Border Background="#1A2536" Width="32" Height="32" CornerRadius="4">
+                    <TextBlock Text="{Binding CurrentPage}" Foreground="White" FontSize="14"
                                FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <TextBlock Text=" / " FontSize="16" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding TotalPages}" FontSize="16" VerticalAlignment="Center"/>
-                <Button Content="≫" FontSize="20" Background="Transparent" BorderThickness="0"
-                        Cursor="Hand" Margin="10,0,0,0"
+                <TextBlock Text=" / " FontSize="14" VerticalAlignment="Center" Foreground="#555555"/>
+                <TextBlock Text="{Binding TotalPages}" FontSize="14" VerticalAlignment="Center" Foreground="#555555"/>
+                <Button Content="≫" FontSize="18" Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Margin="8,0,0,0" Padding="5,0"
                         Command="{Binding NextPageCommand}"/>
             </StackPanel>
 
             <Button HorizontalAlignment="Right" 
                     Content="+ Nuevo docente" 
-                    Width="220" Height="50" 
+                    Width="180" Height="42" 
                     Background="#112233" Foreground="White" 
-                    FontSize="18" FontWeight="Bold" Cursor="Hand" BorderThickness="0">
+                    FontSize="15" FontWeight="Bold" Cursor="Hand" BorderThickness="0">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="12">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
