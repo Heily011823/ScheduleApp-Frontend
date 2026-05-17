@@ -278,11 +278,7 @@ namespace ScheduleApp.UI.ViewModels
             // INFORMACIÓN 
             ShowInformacionCommand = new RelayCommand(o =>
             {
-                var infoVM = new InformationViewModel();
-                var infoView = new InformationView();
-                infoView.DataContext = infoVM;
-
-                CurrentView = infoView;
+                CurrentView = new InformationViewModel();
                 ModuloActivo = "Información";
             });
             // LOGOUT

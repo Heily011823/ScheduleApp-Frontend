@@ -21,8 +21,9 @@ public class UserApiService
 
     public async Task<List<UserModel>> GetUsersAsync()
     {
-        return await _httpClient.GetFromJsonAsync<List<UserModel>>("users")
-               ?? new List<UserModel>();
+        var result = await _httpClient.GetFromJsonAsync<PagedResultModel<UserModel>>("users")
+                     ?? new PagedResultModel<UserModel>();
+        return result.Items;
     }
 
     public async Task<bool> CreateUserAsync(UserModel user)
