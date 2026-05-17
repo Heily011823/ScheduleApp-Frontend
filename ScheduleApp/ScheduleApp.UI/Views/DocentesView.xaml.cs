@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using ScheduleApp.UI.ViewModels;
 
-namespace ScheduleApp.UI.Views
+namespace ScheduleApp.UI.Views;
+
+public partial class DocentesView : UserControl
 {
-    /// <summary>
-    /// Lógica de interacción para DocentesView.xaml
-    /// </summary>
-    public partial class DocentesView : UserControl
+    public DocentesView()
     {
-        public DocentesView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        var vm = new DocentesViewModel();
+        DataContext = vm;
+        Loaded += async (s, e) => await vm.InicializarAsync();
     }
 }

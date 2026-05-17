@@ -26,41 +26,25 @@ namespace ScheduleApp.UI.ViewModels
         public string Usuario
         {
             get => _usuario;
-            set
-            {
-                _usuario = value;
-                OnPropertyChanged();
-            }
+            set { _usuario = value; OnPropertyChanged(); }
         }
 
         public string Contrasena
         {
             get => _contrasena;
-            set
-            {
-                _contrasena = value;
-                OnPropertyChanged();
-            }
+            set { _contrasena = value; OnPropertyChanged(); }
         }
 
         public string MensajeError
         {
             get => _mensajeError;
-            set
-            {
-                _mensajeError = value;
-                OnPropertyChanged();
-            }
+            set { _mensajeError = value; OnPropertyChanged(); }
         }
 
         public string RolUsuario
         {
             get => _rolUsuario;
-            set
-            {
-                _rolUsuario = value;
-                OnPropertyChanged();
-            }
+            set { _rolUsuario = value; OnPropertyChanged(); }
         }
 
         public ICommand LoginCommand { get; }
@@ -88,6 +72,8 @@ namespace ScheduleApp.UI.ViewModels
 
             if (loginSuccess)
             {
+                SessionService.Token = _authenticationService.Token;  
+                SessionService.Role = _authenticationService.Role;   
                 RolUsuario = _authenticationService.Role;
                 OnLoginSuccess?.Invoke();
             }
@@ -99,12 +85,9 @@ namespace ScheduleApp.UI.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void OnPropertyChanged(
-            [CallerMemberName] string? nombre = null)
+        protected void OnPropertyChanged([CallerMemberName] string? nombre = null)
         {
-            PropertyChanged?.Invoke(
-                this,
-                new PropertyChangedEventArgs(nombre));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombre));
         }
     }
 }

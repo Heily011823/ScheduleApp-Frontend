@@ -1,10 +1,8 @@
 ﻿using System;
-
 using System.Collections.ObjectModel;
 
 namespace ScheduleApp.UI.ViewModels
 {
-  
     public class InformationViewModel : BaseViewModel
     {
         public string Title { get; set; }
@@ -24,7 +22,6 @@ namespace ScheduleApp.UI.ViewModels
             AcercaDelSistemaDescripcion = "ScheduleApp es un sistema de gestión de horarios académicos que permite administrar materias, docentes, aulas y generar horarios automáticamente de manera eficiente, optimizando la organización académica.";
 
             DesarrolladoresTitle = "Desarrolladores";
-
             VersionTitle = "Versión";
             VersionNumero = "Versión 1.0";
 

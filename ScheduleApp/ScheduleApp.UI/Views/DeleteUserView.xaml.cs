@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace ScheduleApp.UI.Views
+namespace ScheduleApp.UI.Views;
+
+public partial class DeleteUserView : UserControl
 {
-    public partial class DeleteUserView : UserControl
+    public DeleteUserView()
     {
-        public DeleteUserView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

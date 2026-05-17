@@ -63,7 +63,7 @@
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="• Juan Jacobo cañas Henao" FontSize="15" Foreground="#334155" Margin="0,0,0,8"/>
                             <TextBlock Text="• Juan Esteban Hernandez" FontSize="15" Foreground="#334155" Margin="0,0,0,8"/>
-                            <TextBlock Text="• Johansebastian Osorio Saldarriaga" FontSize="15" Foreground="#334155" Margin="0,0,0,8"/>
+                            
                             <TextBlock Text="• Juan José Morales Aristizabal" FontSize="15" Foreground="#334155" Margin="0,0,0,8"/>
                         </StackPanel>
                     </Grid>

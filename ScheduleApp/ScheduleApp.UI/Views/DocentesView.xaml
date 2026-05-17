@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!-- ENCABEZADO: título, búsqueda y filtros -->
         <Grid Grid.Row="0" Margin="0,0,0,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -52,6 +53,7 @@
                 </Button>
             </Grid>
 
+            <!-- Buscador -->
             <Border Grid.Row="1" 
                     Width="450" Height="45" 
                     BorderBrush="Black" 
@@ -63,51 +65,71 @@
                         <ColumnDefinition Width="45"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0" 
-                               Text="🔍" 
-                               FontSize="18" 
-                               VerticalAlignment="Center" 
-                               HorizontalAlignment="Center" 
-                               Foreground="Gray"/>
-
-                    <TextBox Grid.Column="1" 
-                             BorderThickness="0" 
-                             FontSize="16" 
-                             VerticalContentAlignment="Center" 
-                             Background="Transparent"
-                             Text="Buscar docentes"/>
+                    <TextBlock Grid.Column="0" Text="🔍" FontSize="18" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
+                    <TextBox Grid.Column="1" BorderThickness="0" FontSize="16" 
+                             VerticalContentAlignment="Center" Background="Transparent"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </Border>
 
+            <!-- Filtros -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
-
-                <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" Margin="0,0,25,0" SelectedIndex="0">
+                <ComboBox Width="220" Height="40" FontSize="16" VerticalContentAlignment="Center" 
+                          Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
+                          Margin="0,0,25,0" SelectedIndex="0">
                     <ComboBoxItem Content="Especialidad"/>
                     <ComboBoxItem Content="Sistemas"/>
                     <ComboBoxItem Content="Matemáticas"/>
                 </ComboBox>
 
-                <ComboBox Width="180" Height="40" FontSize="16" VerticalContentAlignment="Center" Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" SelectedIndex="0">
+                <ComboBox Width="180" Height="40" FontSize="16" VerticalContentAlignment="Center" 
+                          Padding="8,0,0,0" BorderBrush="Black" BorderThickness="1.5" 
+                          SelectedValue="{Binding SelectedStatus}"
+                          SelectedIndex="0">
                     <ComboBoxItem Content="Estado"/>
                     <ComboBoxItem Content="Activo"/>
                     <ComboBoxItem Content="Inactivo"/>
                 </ComboBox>
-
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0,10,0,20">
+        <!-- TABLA DE DOCENTES -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding DocentesPaginados}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="1"
+                  BorderBrush="#CBD5E1"
+                  RowHeight="45"
+                  FontSize="14"
+                  Margin="0,10,0,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre completo" Binding="{Binding FullName}" Width="*"/>
+                <DataGridTextColumn Header="Correo" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Documento" Binding="{Binding IdentityDocument}" Width="150"/>
+                <DataGridTextColumn Header="Teléfono" Binding="{Binding PhoneNumber}" Width="130"/>
+                <DataGridTextColumn Header="Estado" Binding="{Binding Status}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        </Grid>
-
+        <!-- PAGINACIÓN Y BOTÓN NUEVO -->
         <Grid Grid.Row="2" Margin="0,15,0,10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Button Content="≪" FontSize="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="0,0,10,0"/>
+                <Button Content="≪" FontSize="20" Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Margin="0,0,10,0"
+                        Command="{Binding PreviousPageCommand}"/>
                 <Border Background="#1B2A41" Width="35" Height="35">
-                    <TextBlock Text="1" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding CurrentPage}" Foreground="White" FontSize="16"
+                               FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <Button Content="≫" FontSize="20" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+                <TextBlock Text=" / " FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding TotalPages}" FontSize="16" VerticalAlignment="Center"/>
+                <Button Content="≫" FontSize="20" Background="Transparent" BorderThickness="0"
+                        Cursor="Hand" Margin="10,0,0,0"
+                        Command="{Binding NextPageCommand}"/>
             </StackPanel>
 
             <Button HorizontalAlignment="Right" 
